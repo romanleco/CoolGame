@@ -6,9 +6,9 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private bool _isGrounded;
     [SerializeField] private bool _canJump = true;
-    private Vector2 _movementVector;
+    [SerializeField] private Vector2 _movementVector;
     private Rigidbody2D _rb;
-    [SerializeField] private float _speed, _jumpforce, _gravity;
+    [SerializeField] private float _speed, _jumpforce, _gravity, _maxFallingSpeed;
     private float _horizontal, _vertical;
     private WaitForSeconds _resetTimer = new WaitForSeconds(0.1f);
 
@@ -56,7 +56,14 @@ public class Player : MonoBehaviour
         }
         else
         {
-            _movementVector.y -= _gravity * Time.deltaTime;
+            if(_movementVector.y > _maxFallingSpeed)
+            {
+                _movementVector.y -= _gravity * Time.deltaTime;
+            }
+            else if(_movementVector.y != _maxFallingSpeed)
+            {
+                _movementVector.y = _maxFallingSpeed;
+            }
         }
 
         _rb.velocity = _movementVector;

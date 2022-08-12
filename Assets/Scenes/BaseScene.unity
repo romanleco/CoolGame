@@ -123,6 +123,71 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &21916335
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2019144793214463924, guid: a27cd3aa6cb2f4a47802483d7a4806bc, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019144793214463924, guid: a27cd3aa6cb2f4a47802483d7a4806bc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 39.526253
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019144793214463924, guid: a27cd3aa6cb2f4a47802483d7a4806bc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.425
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019144793214463924, guid: a27cd3aa6cb2f4a47802483d7a4806bc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.893
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019144793214463924, guid: a27cd3aa6cb2f4a47802483d7a4806bc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.547
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019144793214463924, guid: a27cd3aa6cb2f4a47802483d7a4806bc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019144793214463924, guid: a27cd3aa6cb2f4a47802483d7a4806bc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019144793214463924, guid: a27cd3aa6cb2f4a47802483d7a4806bc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019144793214463924, guid: a27cd3aa6cb2f4a47802483d7a4806bc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019144793214463924, guid: a27cd3aa6cb2f4a47802483d7a4806bc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019144793214463924, guid: a27cd3aa6cb2f4a47802483d7a4806bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019144793214463924, guid: a27cd3aa6cb2f4a47802483d7a4806bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019144793214463924, guid: a27cd3aa6cb2f4a47802483d7a4806bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3723405542958705758, guid: a27cd3aa6cb2f4a47802483d7a4806bc, type: 3}
+      propertyPath: m_Name
+      value: Platform (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a27cd3aa6cb2f4a47802483d7a4806bc, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +241,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.5
+  orthographic size: 8.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -397,19 +462,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6930457271563928492, guid: e490aa8b6acdb474793471b84536f083, type: 3}
       propertyPath: _speed
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6930457271563928492, guid: e490aa8b6acdb474793471b84536f083, type: 3}
       propertyPath: _gravity
-      value: 12
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6930457271563928492, guid: e490aa8b6acdb474793471b84536f083, type: 3}
       propertyPath: _jumpforce
-      value: 12
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 6930457271563928492, guid: e490aa8b6acdb474793471b84536f083, type: 3}
       propertyPath: _rayOffset
       value: -0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6930457271563928492, guid: e490aa8b6acdb474793471b84536f083, type: 3}
+      propertyPath: _maxFallingSpeed
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 6930457271563928492, guid: e490aa8b6acdb474793471b84536f083, type: 3}
       propertyPath: _rayLayerMask.m_Bits
