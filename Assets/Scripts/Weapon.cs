@@ -9,6 +9,12 @@ public class Weapon : MonoBehaviour
     private Vector3 _mousePos;
     [SerializeField] private Camera _playerPointerCam;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    private Vector2 _instantiationPoint;
+    [SerializeField] float _correctionOffset;
+    [SerializeField] private bool _isAutomatic;
+    [SerializeField] private bool _canFire = true;
+    private WaitForSeconds _fireTimer;
+    [SerializeField] private float _fireRate = 0.1f;
 
     void Start()
     {
@@ -17,13 +23,14 @@ public class Weapon : MonoBehaviour
         {
             Debug.LogError("Weapon::Start() SpriteRenderer _spriteRenderer is null");
         }
+        _fireTimer = new WaitForSeconds(_fireRate);
     }
 
     void Update() 
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && _canFire)
         {
-            Instantiate(_bulletPrefab, _bulletSpawn.transform.position, transform.rotation);
+            StartCoroutine("FireRoutine");
         }
         PointAtMouse();
         SideFlip();
@@ -43,10 +50,20 @@ public class Weapon : MonoBehaviour
         if(difference.x > 0)
         {
             _spriteRenderer.flipY = true;
+            _instantiationPoint = new Vector2(_bulletSpawn.transform.position.x, _bulletSpawn.transform.position.y + _correctionOffset);
         }
         else
         {
             _spriteRenderer.flipY = false;
+            _instantiationPoint = _bulletSpawn.transform.position;
         }
+    }
+
+    IEnumerator FireRoutine()
+    {
+        Instantiate(_bulletPrefab, _instantiationPoint, transform.rotation);
+        _canFire = false;
+        yield return _fireTimer;
+        _canFire = true;
     }
 }
