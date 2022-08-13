@@ -14,7 +14,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float _speed, _jumpforce, _gravity, _maxFallingSpeed, _dashingSpeed;
     private float _horizontal, _vertical;
-    private WaitForSeconds _resetTimer = new WaitForSeconds(0.1f);
+    private WaitForSeconds _resetJumpTimer = new WaitForSeconds(0.1f);
+    private WaitForSeconds _resetDashTimer = new WaitForSeconds(1f);
     private WaitForSeconds _dashTimer = new WaitForSeconds(0.15f);
 
     [Header("Ground Check")]
@@ -49,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         _horizontal = Input.GetAxis("Horizontal");
         _vertical = Input.GetAxis("Vertical");
 
-        if(Input.GetKeyDown(KeyCode.LeftShift) && !_dashing)
+        if(Input.GetKeyDown(KeyCode.LeftShift) && !_dashing && _canDash)
         {
             _movementVector.y = 0;
             StartCoroutine("DashRoutine");
@@ -128,12 +129,20 @@ public class PlayerMovement : MonoBehaviour
         }
         yield return _dashTimer;
         _dashing = false;
+        StartCoroutine("DashReset");
+    }
+
+    private IEnumerator DashReset()
+    {
+        _canDash = false;
+        yield return _resetDashTimer;
+        _canDash = true;
     }
 
     private IEnumerator JumpReset()
     {
         _canJump = false;
-        yield return _resetTimer;
+        yield return _resetJumpTimer;
         _canJump = true;
     }
 

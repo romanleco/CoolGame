@@ -18,4 +18,16 @@ public class Bullet : MonoBehaviour
         _movementVector.x = _speed * Time.deltaTime;
         transform.Translate(_movementVector);
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Enemy")
+        {
+            IDamagable hit = other.GetComponent<IDamagable>();
+            if(hit != null)
+            {
+                hit.ReceiveDamage(_damage);
+            }
+        }
+    }
 }

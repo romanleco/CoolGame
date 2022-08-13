@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
     private Vector2 _instantiationPoint;
     [SerializeField] float _correctionOffset;
     [SerializeField] private bool _isAutomatic;
+    private bool _isFiring;
     [SerializeField] private bool _canFire = true;
     private WaitForSeconds _fireTimer;
     [SerializeField] private float _fireRate = 0.1f;
@@ -28,10 +29,20 @@ public class Weapon : MonoBehaviour
 
     void Update() 
     {
-        if(Input.GetMouseButtonDown(0) && _canFire)
+        if(Input.GetMouseButtonDown(0) || _isFiring)
         {
-            StartCoroutine("FireRoutine");
+            _isFiring = true;
+            if(_canFire)
+            {
+                StartCoroutine("FireRoutine");
+            }
         }
+
+        if(Input.GetMouseButtonUp(0))
+        {
+            _isFiring = false;
+        }
+
         PointAtMouse();
         SideFlip();
     }
