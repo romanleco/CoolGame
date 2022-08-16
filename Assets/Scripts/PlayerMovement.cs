@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool _canJump = true, _canDash = true;
     [SerializeField] private Vector2 _movementVector;
     private bool _facingRight;
+    private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rb;
 
     [Header("Movement")]
@@ -29,6 +30,12 @@ public class PlayerMovement : MonoBehaviour
         if(_rb == null)
         {
             Debug.LogError("Player::Start() _rb Rigidbody is null");
+        }
+
+        _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        if(_spriteRenderer == null)
+        {
+            Debug.LogError("Player::Start() _spriteRenderer SpriteRenderer is null");
         }
 
         _canJump = true;
@@ -109,10 +116,12 @@ public class PlayerMovement : MonoBehaviour
         if(_horizontal > 0)
         {
             _facingRight = true;
+            _spriteRenderer.flipX = false;
         }
         else if(_horizontal < 0)
         {
             _facingRight = false;
+            _spriteRenderer.flipX = true;
         }
     }
 

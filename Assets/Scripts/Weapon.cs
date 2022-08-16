@@ -8,39 +8,47 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameObject _bulletSpawn;
     private Vector3 _mousePos;
     [SerializeField] private Camera _playerPointerCam;
-    [SerializeField] private SpriteRenderer _spriteRenderer;
-    private Vector2 _instantiationPoint;
-    [SerializeField] float _correctionOffset;
     [SerializeField] private bool _isAutomatic;
     private bool _isFiring;
     [SerializeField] private bool _canFire = true;
     private WaitForSeconds _fireTimer;
     [SerializeField] private float _fireRate = 0.1f;
+    private Vector2 _localPosition;
+    [SerializeField] private float _xOffset = 0.3f;
 
     void Start()
     {
-        _spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-        if(_spriteRenderer == null)
-        {
-            Debug.LogError("Weapon::Start() SpriteRenderer _spriteRenderer is null");
-        }
         _fireTimer = new WaitForSeconds(_fireRate);
+        _localPosition.y = -0.108f;
     }
 
     void Update() 
     {
-        if(Input.GetMouseButtonDown(0) || _isFiring)
+        if(_isAutomatic)
         {
-            _isFiring = true;
-            if(_canFire)
+            if(Input.GetMouseButtonDown(0) || _isFiring)
             {
-                StartCoroutine("FireRoutine");
+                _isFiring = true;
+                if(_canFire)
+                {
+                    StartCoroutine("FireRoutine");
+                }
+            }
+
+            if(Input.GetMouseButtonUp(0))
+            {
+                _isFiring = false;
             }
         }
-
-        if(Input.GetMouseButtonUp(0))
+        else
         {
-            _isFiring = false;
+            if(Input.GetMouseButtonDown(0))
+            {
+                if(_canFire)
+                {
+                    StartCoroutine("FireRoutine");
+                }
+            }
         }
 
         PointAtMouse();
@@ -58,21 +66,22 @@ public class Weapon : MonoBehaviour
     private void SideFlip()
     {
         Vector3 difference = transform.position - _mousePos;
-        if(difference.x > 0)
+        if(difference.x > 0.35f)
         {
-            _spriteRenderer.flipY = true;
-            _instantiationPoint = new Vector2(_bulletSpawn.transform.position.x, _bulletSpawn.transform.position.y + _correctionOffset);
+            transform.localScale = new Vector2(1, -1);
+            _localPosition.x = -_xOffset;
         }
-        else
+        else if(difference.x < -0.35f)
         {
-            _spriteRenderer.flipY = false;
-            _instantiationPoint = _bulletSpawn.transform.position;
+            transform.localScale = new Vector2(1, 1);
+            _localPosition.x = _xOffset;
         }
+        transform.localPosition = _localPosition;
     }
 
     IEnumerator FireRoutine()
     {
-        Instantiate(_bulletPrefab, _instantiationPoint, transform.rotation);
+        Instantiate(_bulletPrefab, _bulletSpawn.transform.position, transform.rotation);
         _canFire = false;
         yield return _fireTimer;
         _canFire = true;
