@@ -166,11 +166,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fab8164147d7ec54c90773ed14601774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mapNodes:
+  _mapNodes: []
+  _mapNodePrefab: {fileID: 3570627260266335609, guid: b57031931218bf543b68d509b34d08b8, type: 3}
+  _mapVariants:
   - {fileID: 7437127316963450219, guid: 302153c47ef4ca34e9ef2b4b0406f7ef, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _mapSize: 5
+  _nodeHeight: 21.12
+  _nodeWidth: 64
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
