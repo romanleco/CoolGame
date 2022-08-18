@@ -71,11 +71,27 @@ public class MapGenerator : MonoBehaviour
             {
                 _nextNodeCoords.x += _nodeWidth;
                 GameObject newNode = Instantiate(_mapNodePrefab, _nextNodeCoords, Quaternion.identity);
-                // _mapNodes[(i * e) - 1] = newNode;
-                // if(_mapArray[i, e] > 0)
-                // {
-                //     Instantiate(_mapVariants[_mapArray[i, e] - 1], newNode.transform.position, Quaternion.identity);
-                // }
+                // newNode.name = "Node: " + i + ", " + e;
+                int index = 0;
+                if(i != 0)
+                {
+                    index = (i * _mapSize) + e;
+                    _mapNodes[index] = newNode;
+                }
+                else
+                {
+                    index = e;
+                    _mapNodes[index] = newNode;
+                }
+                
+                if(_mapArray[i, e] != 0)
+                {
+                    newNode.GetComponent<MapNode>().InitializeNode(index, _mapVariants[_mapArray[i, e] - 1]);
+                }
+                else
+                {
+                    newNode.GetComponent<MapNode>().InitializeNode(index);
+                }
             }
             _nextNodeCoords.y -= _nodeHeight;
             _nextNodeCoords.x = _topLeftNodeCoords.x;
