@@ -179,79 +179,84 @@ public class MapGenerator : MonoBehaviour
                         }
                     }
 
-                    switch(code)
-                    {
-                        case 1.111f:
-                            _mapArray[i, e] = 1;
-                        break;
-
-                        case 1.110f:
-                            _mapArray[i, e] = 2;
-                        break;
-
-                        case 1.101f:
-                            _mapArray[i, e] = 3;
-                        break;
-
-                        case 1.100f:
-                            _mapArray[i, e] = 4;
-                        break;
-
-                        case 1.011f:
-                            _mapArray[i, e] = 5;
-                        break;
-
-                        case 1.010f:
-                            _mapArray[i, e] = 6;
-                        break;
-
-                        case 1.001f:
-                            _mapArray[i, e] = 7;
-                        break;
-
-                        case 1.000f:
-                            _mapArray[i, e] = 8;
-                        break;
-
-                        case 0.111f:
-                            _mapArray[i, e] = 9;
-                        break;
-
-                        case 0.110f:
-                            _mapArray[i, e] = 10;
-                        break;
-
-                        case 0.101f:
-                            _mapArray[i, e] = 11;
-                        break;
-
-                        case 0.100f:
-                            _mapArray[i, e] = 12;
-                        break;
-
-                        case 0.011f:
-                            _mapArray[i, e] = 13;
-                        break;
-
-                        case 0.010f:
-                            _mapArray[i, e] = 14;
-                        break;
-
-                        case 0.001f:
-                            _mapArray[i, e] = 15;
-                        break;
-
-                        case 0.000f:
-                            _mapArray[i, e] = 16;
-                        break;
-
-                        // default:
-                        //     Debug.LogError("MapGenerator::NodeEnumeration() no index can be assigned");
-                        //     return 0;
-                        // break;
-                    }
+                    AssignValue(i, e, code);
                 }
             }
+        }
+    }
+
+    private void AssignValue(int i, int e, float code)
+    {
+        switch(code)
+        {
+            case 1.111f:
+                _mapArray[i, e] = 1;
+            break;
+
+            case 1.110f:
+                _mapArray[i, e] = 2;
+            break;
+
+            case 1.101f:
+                _mapArray[i, e] = 3;
+            break;
+
+            case 1.100f:
+                _mapArray[i, e] = 4;
+            break;
+
+            case 1.011f:
+                _mapArray[i, e] = 5;
+            break;
+
+            case 1.010f:
+                _mapArray[i, e] = 6;
+            break;
+
+            case 1.001f:
+                _mapArray[i, e] = 7;
+            break;
+
+            case 1.000f:
+                _mapArray[i, e] = 8;
+            break;
+
+            case 0.111f:
+                _mapArray[i, e] = 9;
+            break;
+
+            case 0.110f:
+                _mapArray[i, e] = 10;
+            break;
+
+            case 0.101f:
+                _mapArray[i, e] = 11;
+            break;
+
+            case 0.100f:
+                _mapArray[i, e] = 12;
+            break;
+
+            case 0.011f:
+                _mapArray[i, e] = 13;
+            break;
+
+            case 0.010f:
+                _mapArray[i, e] = 14;
+            break;
+
+            case 0.001f:
+                _mapArray[i, e] = 15;
+            break;
+
+            case 0.000f:
+                _mapArray[i, e] = 16;
+            break;
+
+            default:
+                Debug.LogError("MapGenerator::NodeEnumeration()::AssignValue() no value can be assigned | code: " + code);
+                Debug.Log("height: " + i + " width: " + e);
+            break;
         }
     }
 
