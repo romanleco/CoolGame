@@ -20,8 +20,9 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private int _loops;
     [Range(0f, 10f)][SerializeField] private float _newStructureChances;
     [SerializeField] private Vector2[] _surroundingNodesPositions = new Vector2[4];
-    // private List<Vector2> _previouslySelectedNodes = new List<Vector2>();
-    // private Vector2 _selectedNodePosition;
+    [SerializeField] private int _activeNodes;
+    [SerializeField] private int _maxActiveNodes;
+    [SerializeField] private int _minActiveNodes;
 
     void Start()
     {
@@ -32,6 +33,7 @@ public class MapGenerator : MonoBehaviour
     private void InitializeValues()
     {
         _mapNodes = new GameObject[_mapSize * _mapSize];
+        _activeNodes = 0;
 
         _mapArray = new int[_mapSize, _mapSize];
         _roundedHalfMapSize = Mathf.Ceil((float)_mapSize / 2);
@@ -46,36 +48,27 @@ public class MapGenerator : MonoBehaviour
     private void Generation()
     {
         MapLayout();
+        NodeEnumeration();
         NodeGeneration();
         MapDebug();
     }
 
     private void MapLayout()
     {
-        //generate a multidimensional array with random numbers that specify what node should be generated
-        //*Old generation System
-        // for(int i = 0; i < _mapSize; i++)
-        // {
-        //     for(int e = 0; e < _mapSize; e++)
-        //     {
-        //         if(i != _roundedHalfMapSize - 1 && e != _roundedHalfMapSize - 1)
-        //         {
-        //             _mapArray[i, e] = Random.Range(0, 2);
-        //         }
-        //         else
-        //         {
-        //             _mapArray[i, e] = 1;
-        //         }
-        //     }
-        // }
-        //*Old generation System
-
         //center is 1
         _mapArray[(int)_roundedHalfMapSize - 1, (int)_roundedHalfMapSize - 1] = 1;
+        _activeNodes = 1;
         //select a random node
-        for(int i = 0; i < _loops; i++)
+        while(_activeNodes < _minActiveNodes)
         {
-            AddNodeToMap();
+            for(int i = 0; i < _loops; i++)
+            {
+                if(_activeNodes >= _maxActiveNodes)
+                {
+                    break;
+                }
+                AddNodeToMap();
+            }   
         }
     }
 
@@ -115,23 +108,157 @@ public class MapGenerator : MonoBehaviour
             foreach(Vector2 nodePos in _surroundingNodesPositions)
             {
                 //if it is empty give the probability of assigning it a 1
+                if(_activeNodes >= _maxActiveNodes)
+                {
+                    break;
+                }
+
                 if(_mapArray[(int)nodePos.y, (int)nodePos.x] == 0)
                 {
                     int chance = Random.Range(0,100);
-                    Debug.Log("chance: " + chance);
                     if(chance <= (_newStructureChances * 10))
                     {
                         _mapArray[(int)nodePos.y, (int)nodePos.x] = 1;
-
-                        // _selectedNodePosition.x = (int)nodePos.x;
-                        // _selectedNodePosition.y = (int)nodePos.y;
-                        // _previouslySelectedNodes.Add(_selectedNodePosition);
+                        _activeNodes++;
                     }
                 }
             }
         }
+    }
 
-        //check which nodes have been selected previously and if it has been selected pick another one
+    private void NodeEnumeration()
+    {
+        //for each node in _mapArray
+        for(int i = 0; i < _mapSize; i++)
+        {
+            for(int e = 0; e < _mapSize; e++)
+            {
+                //if node value is not 0
+                if(_mapArray[i, e] != 0)
+                {
+                    float code = 0f;
+                    //Left
+                    if(e != 0)
+                    {
+                        _surroundingNodesPositions[0].x = e - 1;
+                        _surroundingNodesPositions[0].y = i;
+
+                        if(_mapArray[(int)_surroundingNodesPositions[0].y, (int)_surroundingNodesPositions[0].x] > 0)
+                        {
+                            code += 1f;
+                        }
+                    }
+                    //Up
+                    if(i != 0)
+                    {
+                        _surroundingNodesPositions[1].x = e;
+                        _surroundingNodesPositions[1].y = i - 1;
+                        if(_mapArray[(int)_surroundingNodesPositions[1].y, (int)_surroundingNodesPositions[1].x] > 0)
+                        {
+                            code += 0.1f;
+                        }
+                    }
+                    //Right
+                    if(e != _mapSize - 1)
+                    {
+                        _surroundingNodesPositions[2].x = e + 1;
+                        _surroundingNodesPositions[2].y = i;
+                        if(_mapArray[(int)_surroundingNodesPositions[2].y, (int)_surroundingNodesPositions[2].x] > 0)
+                        {
+                            code += 0.01f;
+                        }
+                    }
+                    //Down
+                    if(i != _mapSize - 1)
+                    {
+                        _surroundingNodesPositions[3].x = e;
+                        _surroundingNodesPositions[3].y = i + 1;
+                        if(_mapArray[(int)_surroundingNodesPositions[3].y, (int)_surroundingNodesPositions[3].x] > 0)
+                        {
+                            code += 0.001f;
+                        }
+                    }
+
+                    _mapArray[i, e] = AssignValue(code);
+                    Debug.Log("height: " + i + " width: " + e);
+                }
+            }
+        }
+    }
+
+    private int AssignValue(float code)
+    {
+        switch(code)
+        {
+            case 1.111f:
+                return 1;
+            // break;
+
+            case 1.110f:
+                return 2;
+            // break;
+
+            case 1.101f:
+                return 3;
+            // break;
+
+            case 1.100f:
+                return 4;
+            // break;
+
+            case 1.011f:
+                return 5;
+            // break;
+
+            case 1.010f:
+                return 6;
+            // break;
+
+            case 1.001f:
+                return 7;
+            // break;
+
+            case 1.000f:
+                return 8;
+            // break;
+
+            case 0.111f:
+                return 9;
+            // break;
+
+            case 0.110f:
+                return 10;
+            // break;
+
+            case 0.101f:
+                return 11;
+            // break;
+
+            case 0.100f:
+                return 12;
+            // break;
+
+            case 0.011f:
+                return 13;
+            // break;
+
+            case 0.010f:
+                return 14;
+            // break;
+
+            case 0.001f:
+                return 15;
+            // break;
+
+            case 0.000f:
+                return 16;
+            // break;
+
+            default:
+                Debug.LogError("MapGenerator::NodeEnumeration() no index can be assigned");
+                return 0;
+            // break;
+        }
     }
 
     private void NodeGeneration()
