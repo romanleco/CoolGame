@@ -136,7 +136,7 @@ public class MapGenerator : MonoBehaviour
                 //if node value is not 0
                 if(_mapArray[i, e] != 0)
                 {
-                    float code = 0f;
+                    int code = 0;
                     //Left
                     if(e != 0)
                     {
@@ -145,7 +145,7 @@ public class MapGenerator : MonoBehaviour
 
                         if(_mapArray[(int)_surroundingNodesPositions[0].y, (int)_surroundingNodesPositions[0].x] > 0)
                         {
-                            code += 1f;
+                            code += 1000;
                         }
                     }
                     //Up
@@ -155,7 +155,7 @@ public class MapGenerator : MonoBehaviour
                         _surroundingNodesPositions[1].y = i - 1;
                         if(_mapArray[(int)_surroundingNodesPositions[1].y, (int)_surroundingNodesPositions[1].x] > 0)
                         {
-                            code += 0.1f;
+                            code += 100;
                         }
                     }
                     //Right
@@ -165,7 +165,7 @@ public class MapGenerator : MonoBehaviour
                         _surroundingNodesPositions[2].y = i;
                         if(_mapArray[(int)_surroundingNodesPositions[2].y, (int)_surroundingNodesPositions[2].x] > 0)
                         {
-                            code += 0.01f;
+                            code += 10;
                         }
                     }
                     //Down
@@ -175,81 +175,81 @@ public class MapGenerator : MonoBehaviour
                         _surroundingNodesPositions[3].y = i + 1;
                         if(_mapArray[(int)_surroundingNodesPositions[3].y, (int)_surroundingNodesPositions[3].x] > 0)
                         {
-                            code += 0.001f;
+                            code += 1;
                         }
                     }
 
-                    AssignValue(i, e, code);
+                    AssignValue(i, e, code);//! Here is the problem
                 }
             }
         }
     }
 
-    private void AssignValue(int i, int e, float code)
+    private void AssignValue(int i, int e, int code)
     {
         switch(code)
         {
-            case 1.111f:
+            case 1111:
                 _mapArray[i, e] = 1;
             break;
 
-            case 1.110f:
+            case 1110:
                 _mapArray[i, e] = 2;
             break;
 
-            case 1.101f:
+            case 1101:
                 _mapArray[i, e] = 3;
             break;
 
-            case 1.100f:
+            case 1100:
                 _mapArray[i, e] = 4;
             break;
 
-            case 1.011f:
+            case 1011:
                 _mapArray[i, e] = 5;
             break;
 
-            case 1.010f:
+            case 1010:
                 _mapArray[i, e] = 6;
             break;
 
-            case 1.001f:
+            case 1001:
                 _mapArray[i, e] = 7;
             break;
 
-            case 1.000f:
+            case 1000:
                 _mapArray[i, e] = 8;
             break;
 
-            case 0.111f:
+            case 111:
                 _mapArray[i, e] = 9;
             break;
 
-            case 0.110f:
+            case 110:
                 _mapArray[i, e] = 10;
             break;
 
-            case 0.101f:
+            case 101:
                 _mapArray[i, e] = 11;
             break;
 
-            case 0.100f:
+            case 100:
                 _mapArray[i, e] = 12;
             break;
 
-            case 0.011f:
+            case 11:
                 _mapArray[i, e] = 13;
             break;
 
-            case 0.010f:
+            case 10:
                 _mapArray[i, e] = 14;
             break;
 
-            case 0.001f:
+            case 1:
                 _mapArray[i, e] = 15;
             break;
 
-            case 0.000f:
+            case 0000:
                 _mapArray[i, e] = 16;
             break;
 
