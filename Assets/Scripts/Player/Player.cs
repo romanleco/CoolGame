@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour, IDamagable
 {
-    [SerializeField] private bool _isGrounded;
+    public int Health {get; private set;}
     [SerializeField] private bool _dashing;
     [SerializeField] private bool _canJump = true, _canDash = true;
     [SerializeField] private Vector2 _movementVector;
@@ -20,12 +20,15 @@ public class PlayerMovement : MonoBehaviour
     private WaitForSeconds _dashTimer = new WaitForSeconds(0.15f);
 
     [Header("Ground Check")]
+    [SerializeField] private bool _isGrounded;
     [SerializeField] private Vector2 _rayOrigin, _rayDirection;
     [SerializeField] private float _rayDistance, _rayOffset;
     [SerializeField] private LayerMask _rayLayerMask;
 
     void Start()
     {
+        Health = 100;
+
         _rb = gameObject.GetComponent<Rigidbody2D>();
         if(_rb == null)
         {
@@ -38,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
             Debug.LogError("Player::Start() _spriteRenderer SpriteRenderer is null");
         }
 
+        GameManager.Instance.SetPlayerDamagableInterface(GetComponent<IDamagable>());
+
         _canJump = true;
 
         _rayDirection = Vector2.down;
@@ -49,13 +54,30 @@ public class PlayerMovement : MonoBehaviour
     {
         CalculateMovement();
         GroundCheck();
+        GameManager.Instance.UpdatePlayerPosition(transform.position);
         FacingDirection();
+    }
+
+    public virtual void ReceiveDamage(int damage)
+    {
+        Health -= damage;
+        Debug.Log(Health);
+        if(Health <= 0)
+        {
+            Die();
+        }
+    }
+
+    protected virtual void Die()
+    {
+        Debug.Log("Dead");
+        Destroy(this.gameObject);
     }
 
     private void CalculateMovement()
     {
         _horizontal = Input.GetAxis("Horizontal");
-        _vertical = Input.GetAxis("Vertical");
+        // _vertical = Input.GetAxis("Vertical");
 
         if(Input.GetKeyDown(KeyCode.LeftShift) && !_dashing && _canDash)
         {
@@ -108,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _isGrounded = false;
         }
-        // Debug.DrawRay(_rayOrigin, _rayDirection * _rayDistance, Color.magenta);
+        Debug.DrawRay(_rayOrigin, _rayDirection * _rayDistance, Color.magenta);
     }
 
     private void FacingDirection()

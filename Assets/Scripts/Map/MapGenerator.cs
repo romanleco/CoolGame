@@ -179,7 +179,7 @@ public class MapGenerator : MonoBehaviour
                         }
                     }
 
-                    AssignValue(i, e, code);//! Here is the problem
+                    AssignValue(i, e, code);
                 }
             }
         }
@@ -285,7 +285,14 @@ public class MapGenerator : MonoBehaviour
 
                 if(_mapArray[i, e] != 0)
                 {
-                    newNode.GetComponent<MapNode>().InitializeNode(index, _mapVariants[_mapArray[i, e] - 1]);
+                    if(index == (_mapNodes.Length - 1) / 2)
+                    {
+                        newNode.GetComponent<MapNode>().InitializeNode(index, _mapVariants[_mapArray[i, e] - 1], true);
+                    }
+                    else
+                    {
+                        newNode.GetComponent<MapNode>().InitializeNode(index, _mapVariants[_mapArray[i, e] - 1]);
+                    }
                 }
                 else
                 {
