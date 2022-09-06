@@ -5,6 +5,7 @@ using UnityEngine;
 public class MapNode : MonoBehaviour
 {
     [SerializeField] private int _index;
+    [SerializeField] public GameObject[] possibleEnemies;
     public void InitializeNode(int index, GameObject mapVariation = null, bool isCenterNode = false)
     {
         _index = index;
