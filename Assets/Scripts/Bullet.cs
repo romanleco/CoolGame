@@ -27,7 +27,12 @@ public class Bullet : MonoBehaviour
             if(hit != null)
             {
                 hit.ReceiveDamage(_damage);
+                Destroy(this.gameObject);
             }
+        }
+        else if(other.tag == "Floor")
+        {
+            Destroy(this.gameObject);
         }
     }
 }
