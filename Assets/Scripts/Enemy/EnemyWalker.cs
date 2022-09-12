@@ -18,6 +18,7 @@ public class EnemyWalker : Enemy
     [SerializeField] private Vector2 _rayOrigin, _rayDirection;
     [SerializeField] private float _rayDistance, _rayOffset;
     [SerializeField] private LayerMask _rayLayerMask;
+    [SerializeField] private EnemyGun _enemyGunScr;
     protected override void Start()
     {
         base.Start();
@@ -121,6 +122,10 @@ public class EnemyWalker : Enemy
     IEnumerator StartFollowingPlayer()
     {
         yield return new WaitForSeconds(0.8f);
+        if(_enemyGunScr != null)
+        {
+            _enemyGunScr.StartCoroutine("Shooting");
+        }
         _isFollowingPlayer = true;
     }
 

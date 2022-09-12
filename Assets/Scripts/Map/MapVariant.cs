@@ -95,7 +95,7 @@ public class MapVariant : MonoBehaviour
                 int entNum = Random.Range(0, 4);
                 for(int i = 0; i < entNum; i ++)
                 {
-                    GameObject newEnemy = Instantiate(parentNode.possibleEnemies[0], o.transform.position, Quaternion.identity);
+                    GameObject newEnemy = Instantiate(parentNode.possibleEnemies[Random.Range(0, parentNode.possibleEnemies.Length)], o.transform.position, Quaternion.identity);
                     newEnemy.transform.parent = o.transform;
                     _enemiesAlive.Add(newEnemy.GetComponent<EnemyWalker>());
                 }
