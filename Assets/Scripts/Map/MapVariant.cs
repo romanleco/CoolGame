@@ -6,11 +6,13 @@ public class MapVariant : MonoBehaviour
 {
     [SerializeField] private GameObject[] _entranceBlockers = new GameObject[2];
     private GameObject[] _dynamicBlockers = new GameObject[2];
-    [SerializeField] private GameObject[] _enemySpawners = new GameObject[5];
+    [SerializeField] private GameObject[] _enemySpawners = new GameObject[6];
     [SerializeField] private bool _isCenter;
     public int _code;
     [SerializeField] private List<EnemyWalker> _enemiesAlive = new List<EnemyWalker>();
     [SerializeField] private bool _right, _up, _left, _down; //which directions have an active node
+    private bool _cleared;
+    [SerializeField] private GameObject[] _stairs;
     void Start()
     {
         PopulateEnemySpawns();
@@ -19,6 +21,26 @@ public class MapVariant : MonoBehaviour
         _entranceBlockers[0] = this.transform.Find("EntranceBlockLeft").gameObject;
         _entranceBlockers[1] = this.transform.Find("EntranceBlockRight").gameObject;
 
+        if(_left)
+        {
+            _entranceBlockers[0].SetActive(false);
+        }
+
+        if(_right)
+        {
+            _entranceBlockers[1].SetActive(false);
+        }
+
+        if(!_up)
+        {
+            _stairs[0].SetActive(false);
+        }
+
+        if(!_down)
+        {
+            _stairs[1].SetActive(false);
+        }
+
         for(int i = 0; i < _entranceBlockers.Length; i++)
         {
             if(_entranceBlockers[i].activeSelf == false)
@@ -26,16 +48,25 @@ public class MapVariant : MonoBehaviour
                 _dynamicBlockers[i] = _entranceBlockers[i];
             }
         }
+
+        if(_isCenter)
+        {
+            foreach(GameObject s in _stairs)
+            {
+                if(s.activeSelf)
+                s.GetComponent<Stairs>().SetFunctional(true);
+            }
+        }
+
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if(!_isCenter)
         {    
-            if(other.tag == "Player")
+            if(other.tag == "Player" && !_cleared)
             {
                 ManageEntrances(true);
-                StartCoroutine("Open");
             }
         }
         else
@@ -51,6 +82,7 @@ public class MapVariant : MonoBehaviour
         _enemySpawners[2] = this.transform.Find("EnemySpawn (2)").gameObject;
         _enemySpawners[3] = this.transform.Find("EnemySpawn (3)").gameObject;
         _enemySpawners[4] = this.transform.Find("EnemySpawn (4)").gameObject;
+        _enemySpawners[5] = this.transform.Find("EnemySpawn (5)").gameObject;
     }
 
     private void SpawnEnemies()
@@ -60,7 +92,7 @@ public class MapVariant : MonoBehaviour
         {
             foreach(GameObject o in _enemySpawners)
             {
-                int entNum = Random.Range(-1, 4);
+                int entNum = Random.Range(0, 4);
                 for(int i = 0; i < entNum; i ++)
                 {
                     GameObject newEnemy = Instantiate(parentNode.possibleEnemies[0], o.transform.position, Quaternion.identity);
@@ -74,11 +106,16 @@ public class MapVariant : MonoBehaviour
     public void CheckRoomClear(EnemyWalker enemy)
     {
         _enemiesAlive.Remove(enemy);
-        if(_enemiesAlive.Count !> 0)
-        {
-            Debug.Log("Cleared");
+        if(_enemiesAlive.Count <= 0)
+        {   
+            _cleared = true;
+            foreach(GameObject s in _stairs)
+            {
+                if(s.activeSelf)
+                s.GetComponent<Stairs>().SetFunctional(true);
+            }
+            StartCoroutine("Open");
         }
-        Debug.Log("Called");
     }
 
     private void ManageEntrances(bool close)

@@ -120,7 +120,7 @@ public class EnemyWalker : Enemy
 
     IEnumerator StartFollowingPlayer()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.8f);
         _isFollowingPlayer = true;
     }
 
