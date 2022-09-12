@@ -46,3 +46,5 @@ MonoBehaviour:
   _index: 0
   possibleEnemies:
   - {fileID: 8088825156838197841, guid: 54ece11a8faccde428b9fcb52c3b58c4, type: 3}
+  _mapVariations:
+  - {fileID: 7437127316963450219, guid: c2c46454df0531440a494e00415b8945, type: 3}

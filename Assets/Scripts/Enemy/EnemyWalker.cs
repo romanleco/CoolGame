@@ -37,7 +37,7 @@ public class EnemyWalker : Enemy
         // _rayOffset = -0.64f;
         _rayDistance = 0.05f;
 
-        StartCoroutine("StartFollowingPlayer");
+        _speed = Random.Range(5, 9);
     }
 
     void Update()
@@ -105,6 +105,12 @@ public class EnemyWalker : Enemy
         base.ReceiveDamage(damage);
     }
 
+    protected override void Die()
+    {
+        transform.parent.parent.GetComponent<MapVariant>().CheckRoomClear(this);
+        base.Die();
+    }
+
     IEnumerator ChangeColor()
     {
         _spriteRenderer.color = Color.white;
@@ -114,7 +120,12 @@ public class EnemyWalker : Enemy
 
     IEnumerator StartFollowingPlayer()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(0.5f);
         _isFollowingPlayer = true;
+    }
+
+    public void ActivateEnemy()
+    {
+        StartCoroutine("StartFollowingPlayer");
     }
 }

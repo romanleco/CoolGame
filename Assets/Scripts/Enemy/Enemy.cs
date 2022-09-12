@@ -23,7 +23,6 @@ public abstract class Enemy : MonoBehaviour, IDamagable
 
     protected virtual void Die()
     {
-        Debug.Log("Dead");
         Destroy(this.gameObject);
     }
 }

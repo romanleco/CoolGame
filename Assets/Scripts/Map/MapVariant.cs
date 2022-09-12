@@ -4,27 +4,28 @@ using UnityEngine;
 
 public class MapVariant : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _entranceBlockers = new GameObject[4];
-    private GameObject[] _inactiveBlockers = new GameObject[4];
+    [SerializeField] private GameObject[] _entranceBlockers = new GameObject[2];
+    private GameObject[] _dynamicBlockers = new GameObject[2];
     [SerializeField] private GameObject[] _enemySpawners = new GameObject[5];
     [SerializeField] private bool _isCenter;
+    public int _code;
+    [SerializeField] private List<EnemyWalker> _enemiesAlive = new List<EnemyWalker>();
+    [SerializeField] private bool _right, _up, _left, _down; //which directions have an active node
     void Start()
     {
+        PopulateEnemySpawns();
+        SpawnEnemies();
+
         _entranceBlockers[0] = this.transform.Find("EntranceBlockLeft").gameObject;
-        _entranceBlockers[1] = this.transform.Find("EntranceBlockUp").gameObject;
-        _entranceBlockers[2] = this.transform.Find("EntranceBlockRight").gameObject;
-        _entranceBlockers[3] = this.transform.Find("EntranceBlockDown").gameObject;
+        _entranceBlockers[1] = this.transform.Find("EntranceBlockRight").gameObject;
 
         for(int i = 0; i < _entranceBlockers.Length; i++)
         {
             if(_entranceBlockers[i].activeSelf == false)
             {
-                _inactiveBlockers[i] = _entranceBlockers[i];
+                _dynamicBlockers[i] = _entranceBlockers[i];
             }
         }
-
-        PopulateEnemySpawns();
-        SpawnEnemies();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -62,22 +63,37 @@ public class MapVariant : MonoBehaviour
                 int entNum = Random.Range(-1, 4);
                 for(int i = 0; i < entNum; i ++)
                 {
-                    // Instantiate(parentNode.possibleEnemies[Random.Range(0, parentNode.possibleEnemies.Length + 1)], o.transform.position, Quaternion.identity);
-                    Instantiate(parentNode.possibleEnemies[0], o.transform.position, Quaternion.identity);
+                    GameObject newEnemy = Instantiate(parentNode.possibleEnemies[0], o.transform.position, Quaternion.identity);
+                    newEnemy.transform.parent = o.transform;
+                    _enemiesAlive.Add(newEnemy.GetComponent<EnemyWalker>());
                 }
             }
         }
     }
 
+    public void CheckRoomClear(EnemyWalker enemy)
+    {
+        _enemiesAlive.Remove(enemy);
+        if(_enemiesAlive.Count !> 0)
+        {
+            Debug.Log("Cleared");
+        }
+        Debug.Log("Called");
+    }
+
     private void ManageEntrances(bool close)
     {
-        foreach(GameObject o in _inactiveBlockers)
+        foreach(GameObject o in _dynamicBlockers)
         {
             if(o != null)
             {
                 if(o.activeSelf == false && close)
                 {
                     o.SetActive(true);
+                    foreach(EnemyWalker enemy in _enemiesAlive)
+                    {
+                        enemy.ActivateEnemy();
+                    }
                 }
                 else if(!close)
                 {
@@ -96,5 +112,101 @@ public class MapVariant : MonoBehaviour
     public void SetIsCenter(bool TorF)
     {
         _isCenter = TorF;
+    }
+
+    public void SetCode(int code)
+    {
+        _code = code;
+    }
+
+    public void AssignValue()
+    {
+        switch(_code)
+        {
+            case 1111:
+                _left = true;
+                _up = true;
+                _right = true;
+                _down = true;
+            break;
+
+            case 1110:
+                _left = true;
+                _up = true;
+                _right = true;
+            break;
+
+            case 1101:
+                _left = true;
+                _up = true;
+                _down = true;
+            break;
+
+            case 1100:
+                _left = true;
+                _up = true;
+            break;
+
+            case 1011:
+                _left = true;
+                _right = true;
+                _down = true;
+            break;
+
+            case 1010:
+                _left = true;
+                _right = true;
+            break;
+
+            case 1001:
+                _left = true;
+                _down = true;
+            break;
+
+            case 1000:
+                _left = true;
+            break;
+
+            case 111:
+                _up = true;
+                _right = true;
+                _down = true;
+            break;
+
+            case 110:
+                _up = true;
+                _right = true;
+            break;
+
+            case 101:
+                _up = true;
+                _down = true;
+            break;
+
+            case 100:
+                _up = true;
+            break;
+
+            case 11:
+                _right = true;
+                _down = true;
+            break;
+
+            case 10:
+                _right = true;
+            break;
+
+            case 1:
+                _down = true;
+            break;
+
+            case 0:
+                
+            break;
+
+            default:
+                Debug.LogError("MapVariant::AssignValue() no value can be assigned | code: " + _code);
+            break;
+        }
     }
 }

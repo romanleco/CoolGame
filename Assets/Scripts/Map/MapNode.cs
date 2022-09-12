@@ -6,14 +6,18 @@ public class MapNode : MonoBehaviour
 {
     [SerializeField] private int _index;
     [SerializeField] public GameObject[] possibleEnemies;
-    public void InitializeNode(int index, GameObject mapVariation = null, bool isCenterNode = false)
+    [SerializeField] private GameObject[] _mapVariations;
+    public void InitializeNode(int index, int code, bool isCenterNode = false, bool emptyNode = false)
     {
         _index = index;
 
-        if(mapVariation != null)
+        if(!emptyNode)
         {
-            GameObject mapVar = Instantiate(mapVariation, transform.position, Quaternion.identity);
-            mapVar.GetComponent<MapVariant>().SetIsCenter(isCenterNode);
+            GameObject mapVar = Instantiate(_mapVariations[0], transform.position, Quaternion.identity);
+            MapVariant mapVarScr = mapVar.GetComponent<MapVariant>();
+            mapVarScr.SetIsCenter(isCenterNode);
+            mapVarScr.SetCode(code);
+            mapVarScr.AssignValue();
             mapVar.transform.parent = gameObject.transform;
         }
     }
