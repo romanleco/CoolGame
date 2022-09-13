@@ -10,7 +10,7 @@ public class EnemyGun : MonoBehaviour
     private WaitForSeconds _cooldownTimer;
     void Start()
     {
-        _cooldownTimer = new WaitForSeconds(Random.Range(1, 3));
+        _cooldownTimer = new WaitForSeconds(Random.Range(2f, 5f));
     }
 
     void Update()
@@ -28,7 +28,7 @@ public class EnemyGun : MonoBehaviour
 
     public void Shoot()
     {
-        Instantiate(_projectile, _barrel.position, Quaternion.identity);
+        Instantiate(_projectile, _barrel.position, transform.rotation);
     }
 
     IEnumerator Shooting()
