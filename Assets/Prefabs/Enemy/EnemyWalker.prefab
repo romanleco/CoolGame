@@ -171,6 +171,10 @@ MonoBehaviour:
   _maxFallingSpeed: -20
   _gravity: 60
   _speed: 5
+  _resources:
+  - {fileID: 8907720792417482976, guid: 691b5a4d575c7904d9a323a5ad866a15, type: 3}
+  - {fileID: 5922919870614075327, guid: 58b22db7cb35b2643a32380531f56f69, type: 3}
+  - {fileID: 6305267199834449708, guid: 5c4e55fc35ff6684d88f5086f32223dc, type: 3}
   _isGrounded: 0
   _rayOrigin: {x: 0, y: 0}
   _rayDirection: {x: 0, y: 0}
@@ -179,6 +183,7 @@ MonoBehaviour:
   _rayLayerMask:
     serializedVersion: 2
     m_Bits: 55
+  _enemyGunScr: {fileID: 0}
 --- !u!61 &8088825156838197844
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -12,6 +12,8 @@ public class EnemyWalker : Enemy
     [SerializeField] private float _maxFallingSpeed;
     [SerializeField] private float _gravity;
     [SerializeField] private float _speed;
+    [SerializeField] private GameObject[] _resources;
+    private bool _canBeDamaged;
 
     [Header("GroundCheck")]
     [SerializeField] private bool _isGrounded;
@@ -102,14 +104,26 @@ public class EnemyWalker : Enemy
 
     public override void ReceiveDamage(int damage)
     {
-        StartCoroutine(ChangeColor());
-        base.ReceiveDamage(damage);
+        if(_canBeDamaged)
+        {
+            StartCoroutine(ChangeColor());
+            base.ReceiveDamage(damage);
+        }
     }
 
     protected override void Die()
     {
         transform.parent.parent.GetComponent<MapVariant>().CheckRoomClear(this);
+        DropResources();
         base.Die();
+    }
+
+    private void DropResources()
+    {
+        if(Random.Range(0, 3) > 1)
+        {
+            Instantiate(_resources[Random.Range(0, _resources.Length)], transform.position, Quaternion.identity);
+        }
     }
 
     IEnumerator ChangeColor()
@@ -132,5 +146,6 @@ public class EnemyWalker : Enemy
     public void ActivateEnemy()
     {
         StartCoroutine("StartFollowingPlayer");
+        _canBeDamaged = true;
     }
 }
