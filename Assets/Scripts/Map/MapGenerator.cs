@@ -12,6 +12,7 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private float _nodeHeight, _nodeWidth;
     private int _lastNumberGenerated;
     private float _mapCenter;
+    private Vector2 _lastNodePos;
     private Vector2 _topLeftNodeCoords;
     private Vector2 _nextNodeCoords;
 
@@ -119,6 +120,8 @@ public class MapGenerator : MonoBehaviour
                     {
                         _mapArray[(int)nodePos.y, (int)nodePos.x] = 1;
                         _activeNodes++;
+                        _lastNodePos.x = nodePos.x;
+                        _lastNodePos.y = nodePos.y;
                     }
                 }
             }
@@ -136,6 +139,7 @@ public class MapGenerator : MonoBehaviour
                 if(_mapArray[i, e] != 0)
                 {
                     int code = 0;
+                    
                     //Left
                     if(e != 0)
                     {
@@ -210,13 +214,20 @@ public class MapGenerator : MonoBehaviour
 
                 if(_mapArray[i, e] != 0)
                 {
-                    if(index == (_mapNodes.Length - 1) / 2)
+                    if(i == _lastNodePos.y && e == _lastNodePos.x)
                     {
-                        newNode.GetComponent<MapNode>().InitializeNode(index, (_mapArray[i, e]), true);
+                        newNode.GetComponent<MapNode>().InitializeNode(index, (_mapArray[i, e]), false, false, true);
                     }
                     else
                     {
-                        newNode.GetComponent<MapNode>().InitializeNode(index, (_mapArray[i, e]));
+                        if(index == (_mapNodes.Length - 1) / 2)
+                        {
+                            newNode.GetComponent<MapNode>().InitializeNode(index, (_mapArray[i, e]), true);
+                        }
+                        else
+                        {
+                            newNode.GetComponent<MapNode>().InitializeNode(index, (_mapArray[i, e]));
+                        }
                     }
                 }
                 else

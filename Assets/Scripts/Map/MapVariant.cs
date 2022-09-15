@@ -8,11 +8,13 @@ public class MapVariant : MonoBehaviour
     private GameObject[] _dynamicBlockers = new GameObject[2];
     [SerializeField] private GameObject[] _enemySpawners = new GameObject[6];
     [SerializeField] private bool _isCenter;
+    private bool _isEndNode;
     public int _code;
     [SerializeField] private List<EnemyWalker> _enemiesAlive = new List<EnemyWalker>();
     [SerializeField] private bool _right, _up, _left, _down; //which directions have an active node
     private bool _cleared;
     [SerializeField] private GameObject[] _stairs;
+    [SerializeField] private GameObject _returnPortal;
     void Start()
     {
         PopulateEnemySpawns();
@@ -56,6 +58,11 @@ public class MapVariant : MonoBehaviour
                 if(s.activeSelf)
                 s.GetComponent<Stairs>().SetFunctional(true);
             }
+        }
+
+        if(_isEndNode)
+        {
+            _returnPortal.SetActive(true);
         }
 
     }
@@ -114,6 +121,7 @@ public class MapVariant : MonoBehaviour
                 if(s.activeSelf)
                 s.GetComponent<Stairs>().SetFunctional(true);
             }
+            _returnPortal.GetComponent<Teleporter>().SetFunctional();
             StartCoroutine("Open");
         }
     }
@@ -127,15 +135,19 @@ public class MapVariant : MonoBehaviour
                 if(o.activeSelf == false && close)
                 {
                     o.SetActive(true);
-                    foreach(EnemyWalker enemy in _enemiesAlive)
-                    {
-                        enemy.ActivateEnemy();
-                    }
                 }
                 else if(!close)
                 {
                     o.SetActive(false);
                 }
+            }
+        }
+
+        if(close)
+        {
+            foreach(EnemyWalker enemy in _enemiesAlive)
+            {
+                enemy.ActivateEnemy();
             }
         }
     }
@@ -154,6 +166,11 @@ public class MapVariant : MonoBehaviour
     public void SetCode(int code)
     {
         _code = code;
+    }
+
+    public void SetEndNode(bool TorF)
+    {
+        _isEndNode = TorF;
     }
 
     public void AssignValue()

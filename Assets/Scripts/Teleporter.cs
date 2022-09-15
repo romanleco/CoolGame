@@ -6,6 +6,17 @@ public class Teleporter : MonoBehaviour
 {
     private bool _playerHere;
     [SerializeField] private string _sceneNameToTeleportTo;
+    private bool _active;
+    [SerializeField] private bool _alwaysActive;
+    [SerializeField] private bool _savesOnTeleport;
+
+    void Start()
+    {
+        if(_alwaysActive)
+        {
+            _active = true;
+        }
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player")
@@ -26,10 +37,19 @@ public class Teleporter : MonoBehaviour
     {
         if(_playerHere)
         {
-            if(Input.GetKeyDown(KeyCode.E))
+            if(Input.GetKeyDown(KeyCode.E) && _active)
             {
+                if(_savesOnTeleport)
+                {
+                    SaveManager.Instance.Save();
+                }
                 SceneManager.Instance.ChangeScene(_sceneNameToTeleportTo);
             }
         }
+    }
+
+    public void SetFunctional()
+    {
+        _active = true;
     }
 }
