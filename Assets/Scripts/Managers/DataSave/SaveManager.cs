@@ -26,15 +26,20 @@ public class SaveManager : MonoBehaviour
 
     public void Save()
     {
+        DataContainer loadedData = Load();
+
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/save.datasave";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        DataContainer data = Load();
-        data.metalPlates += GameManager.Instance.metalPlates;
-        data.energyCores += GameManager.Instance.energyCores;
-        data.gears += GameManager.Instance.gears;
-        data.circuitBoards += GameManager.Instance.circuitBoards;
+        DataContainer data = new DataContainer(GameManager.Instance.metalPlates, GameManager.Instance.energyCores, GameManager.Instance.gears, GameManager.Instance.circuitBoards);
+        if(loadedData != null)
+        {
+            data.metalPlates += loadedData.metalPlates;
+            data.energyCores += loadedData.energyCores;
+            data.gears += loadedData.gears;
+            data.circuitBoards += loadedData.circuitBoards;
+        }
 
         formatter.Serialize(stream, data);
         stream.Close();
@@ -47,6 +52,12 @@ public class SaveManager : MonoBehaviour
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
+
+            if(stream.Length == 0)
+            {
+                stream.Close();
+                return null;
+            }
 
             DataContainer data = (DataContainer)formatter.Deserialize(stream);
             stream.Close();
