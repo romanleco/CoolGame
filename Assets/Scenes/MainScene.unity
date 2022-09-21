@@ -169,8 +169,8 @@ MonoBehaviour:
   _mapNodes: []
   _mapNodePrefab: {fileID: 3570627260266335609, guid: b57031931218bf543b68d509b34d08b8, type: 3}
   _mapSize: 5
-  _nodeHeight: 20.48
-  _nodeWidth: 63.16
+  _nodeHeight: 19.84
+  _nodeWidth: 63.04
   _loops: 70
   _newStructureChances: 4
   _surroundingNodesPositions:

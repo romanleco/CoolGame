@@ -8,7 +8,7 @@ public class Stairs : MonoBehaviour
     [SerializeField] private bool _up;
     private bool _active;
     private Vector2 _teleportVector;
-    private float _teleportDistance = 20.48f;
+    private float _teleportDistance = 19.2f;
     private GameObject _player;
     void OnTriggerEnter2D(Collider2D other)
     {
