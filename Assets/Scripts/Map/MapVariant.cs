@@ -15,6 +15,7 @@ public class MapVariant : MonoBehaviour
     private bool _cleared;
     [SerializeField] private GameObject[] _stairs;
     [SerializeField] private GameObject _returnPortal;
+    [SerializeField] private GameObject[] _backgrounds = new GameObject[6];
     void Start()
     {
         PopulateEnemySpawns();
@@ -64,6 +65,8 @@ public class MapVariant : MonoBehaviour
         {
             _returnPortal.SetActive(true);
         }
+
+        _backgrounds[Random.Range(0, _backgrounds.Length)].SetActive(true);
 
     }
 
