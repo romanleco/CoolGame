@@ -39,9 +39,70 @@ public class SaveManager : MonoBehaviour
             data.energyCores += loadedData.energyCores;
             data.gears += loadedData.gears;
             data.circuitBoards += loadedData.circuitBoards;
+
+            data.wBOneUpgOneUnlocked = loadedData.wBOneUpgOneUnlocked;
+            data.wBOneUpgTwoUnlocked = loadedData.wBOneUpgTwoUnlocked;
+            data.wBOneUpgThreeUnlocked = loadedData.wBOneUpgThreeUnlocked;
         }
 
         formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    public void Save(int newMetalPlates, int newEnergyCores, int newGears, int newCircuitBoards)
+    {
+        DataContainer loadedData = Load();
+
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/save.datasave";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        DataContainer data = new DataContainer(newMetalPlates, newEnergyCores, newGears, newCircuitBoards);
+
+        data.wBOneUpgOneUnlocked = loadedData.wBOneUpgOneUnlocked;
+        data.wBOneUpgTwoUnlocked = loadedData.wBOneUpgTwoUnlocked;
+        data.wBOneUpgThreeUnlocked = loadedData.wBOneUpgThreeUnlocked;
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    public void UnlockUpgrade(int workbenchNumber, int upgradeNumber)
+    {
+        DataContainer loadedData = Load();
+
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/save.datasave";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        if(loadedData == null)
+        {
+            loadedData = new DataContainer(0, 0, 0, 0);
+        }
+
+        if(workbenchNumber == 1)
+        {
+            switch(upgradeNumber)
+            {
+                case 1:
+                    loadedData.wBOneUpgOneUnlocked = true;
+                break;
+
+                case 2:
+                    loadedData.wBOneUpgTwoUnlocked = true;
+                break;
+
+                case 3:
+                    loadedData.wBOneUpgThreeUnlocked = true;
+                break;
+
+                default:
+                    Debug.LogError("Upgrade number defaulted");
+                break;
+            }
+        }
+
+        formatter.Serialize(stream, loadedData);
         stream.Close();
     }
 

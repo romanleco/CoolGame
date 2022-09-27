@@ -16,7 +16,7 @@ public class Player : MonoBehaviour, IDamagable
     [SerializeField] private float _speed, _jumpforce, _gravity, _maxFallingSpeed, _dashingSpeed;
     private float _horizontal, _vertical;
     private WaitForSeconds _resetJumpTimer = new WaitForSeconds(0.1f);
-    private WaitForSeconds _resetDashTimer = new WaitForSeconds(1f);
+    private WaitForSeconds _resetDashTimer = new WaitForSeconds(1.2f);
     private WaitForSeconds _dashTimer = new WaitForSeconds(0.15f);
 
     [Header("Ground Check")]
@@ -24,10 +24,15 @@ public class Player : MonoBehaviour, IDamagable
     [SerializeField] private Vector2 _rayOrigin, _rayDirection;
     [SerializeField] private float _rayDistance, _rayOffset;
     [SerializeField] private LayerMask _rayLayerMask;
+    
+    private bool wBOneUpgradeOne;
+    private bool wBOneUpgradeTwo;
+    private bool wBOneUpgradeThree;
 
     void Start()
     {
         Health = 100;
+        _speed = 26;
 
         _rb = gameObject.GetComponent<Rigidbody2D>();
         if(_rb == null)
@@ -48,6 +53,23 @@ public class Player : MonoBehaviour, IDamagable
         _rayDirection = Vector2.down;
         // _rayOffset = -0.64f;
         _rayDistance = 0.2f;
+
+        DataContainer data = SaveManager.Instance.Load();
+
+        if(data.wBOneUpgOneUnlocked == true)
+        {
+            Health = 150;
+        }
+
+        if(data.wBOneUpgTwoUnlocked == true)
+        {
+            _resetDashTimer = new WaitForSeconds(0.6f);
+        }
+
+        if(data.wBOneUpgThreeUnlocked == true)
+        {
+            _speed = 32;
+        }
     }
 
     void Update()

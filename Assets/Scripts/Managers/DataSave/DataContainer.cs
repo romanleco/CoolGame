@@ -8,6 +8,9 @@ public class DataContainer
     public int energyCores;
     public int gears;
     public int circuitBoards;
+    public bool wBOneUpgOneUnlocked;
+    public bool wBOneUpgTwoUnlocked;
+    public bool wBOneUpgThreeUnlocked;
     public DataContainer(int metalPlates, int energyCores, int gears, int circuitBoards)
     {
         this.metalPlates = metalPlates;
