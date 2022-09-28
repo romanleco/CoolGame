@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8251329473517842288}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +105,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b634840db79243d45b7ac45bf2e8f936, type: 3}
   m_Color: {r: 1, g: 0.9515276, b: 0.15566039, a: 1}
   m_FlipX: 0
@@ -129,16 +129,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c19b8a8f62fda4e9c5c9d000779713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isGrounded: 0
   _dashing: 0
   _canJump: 1
   _canDash: 1
   _movementVector: {x: 0, y: 0}
+  _resources:
+  - {fileID: 6305267199834449708, guid: 5c4e55fc35ff6684d88f5086f32223dc, type: 3}
+  - {fileID: 703908097243194891, guid: f5d7905d4660c2c40a2484432535330a, type: 3}
+  - {fileID: 5922919870614075327, guid: 58b22db7cb35b2643a32380531f56f69, type: 3}
+  - {fileID: 8907720792417482976, guid: 691b5a4d575c7904d9a323a5ad866a15, type: 3}
   _speed: 30
   _jumpforce: 24
   _gravity: 60
   _maxFallingSpeed: -20
   _dashingSpeed: 60
+  _isGrounded: 0
   _rayOrigin: {x: 0, y: 0}
   _rayDirection: {x: 0, y: 0}
   _rayDistance: 0
@@ -276,6 +281,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: b679330037a72894b97fd7b47a4bf7ca, type: 3}
+    - target: {fileID: 873552025140546060, guid: bc196567ec9f3d1418d98d4ef8dcef19, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 873552025140546060, guid: bc196567ec9f3d1418d98d4ef8dcef19, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1

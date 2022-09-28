@@ -11,6 +11,7 @@ public class Player : MonoBehaviour, IDamagable
     private bool _facingRight;
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rb;
+    [SerializeField] private GameObject[] _resources = new GameObject[4];
 
     [Header("Movement")]
     [SerializeField] private float _speed, _jumpforce, _gravity, _maxFallingSpeed, _dashingSpeed;
@@ -32,7 +33,7 @@ public class Player : MonoBehaviour, IDamagable
     void Start()
     {
         Health = 100;
-        _speed = 26;
+        _speed = 25;
 
         _rb = gameObject.GetComponent<Rigidbody2D>();
         if(_rb == null)
@@ -68,7 +69,7 @@ public class Player : MonoBehaviour, IDamagable
 
         if(data.wBOneUpgThreeUnlocked == true)
         {
-            _speed = 32;
+            _speed = 30;
         }
     }
 
@@ -92,8 +93,31 @@ public class Player : MonoBehaviour, IDamagable
 
     protected virtual void Die()
     {
-        Debug.Log("Dead");
+        DropResources();
         Destroy(this.gameObject);
+    }
+
+    private void DropResources()
+    {
+        for(int i = 0; i < GameManager.Instance.metalPlates; i++)
+        {
+            Instantiate(_resources[0], transform.position, Quaternion.identity);
+        }
+
+        for(int i = 0; i < GameManager.Instance.energyCores; i++)
+        {
+            Instantiate(_resources[1], transform.position, Quaternion.identity);
+        }
+
+        for(int i = 0; i < GameManager.Instance.gears; i++)
+        {
+            Instantiate(_resources[2], transform.position, Quaternion.identity);
+        }
+
+        for(int i = 0; i < GameManager.Instance.circuitBoards; i++)
+        {
+            Instantiate(_resources[3], transform.position, Quaternion.identity);
+        }
     }
 
     private void CalculateMovement()
