@@ -94,6 +94,7 @@ public class Player : MonoBehaviour, IDamagable
     protected virtual void Die()
     {
         DropResources();
+        SceneManager.Instance.ChangeSceneWithDelay(1f, "BaseScene");
         Destroy(this.gameObject);
     }
 

@@ -11,6 +11,8 @@ public class DataContainer
     public bool wBOneUpgOneUnlocked;
     public bool wBOneUpgTwoUnlocked;
     public bool wBOneUpgThreeUnlocked;
+    public int volume = 100;
+    public int fXVolume = 100;
     public DataContainer(int metalPlates, int energyCores, int gears, int circuitBoards)
     {
         this.metalPlates = metalPlates;

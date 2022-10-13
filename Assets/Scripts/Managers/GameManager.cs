@@ -22,6 +22,33 @@ public class GameManager : MonoBehaviour
         _instance = this;
     }
 
+    void Start()
+    {
+        string currentSceneName = SceneManager.Instance.GetSceneName();
+        switch(currentSceneName)
+        {
+            case "BaseScene":
+                MusicManager.Instance.PlayBase();
+            break;
+
+            case "MainScene":
+                MusicManager.Instance.PlayLoopable();
+            break;
+
+            case "MainMenuScene":
+                MusicManager.Instance.PlayMainMenu();
+                if(SaveManager.Instance.Load() == null)
+                {
+                    GameObject.Find("ContinueButton").SetActive(false);
+                }
+            break;
+
+            default:
+                Debug.LogError("GameManager.Start() SceneName not found");
+            break;
+        }
+    }
+
     [SerializeField] public int metalPlates{get; private set;} //* id = 0
     [SerializeField] public int energyCores{get; private set;} //* id = 1
     [SerializeField] public int gears{get; private set;} //* id = 2

@@ -59,15 +59,18 @@ public class SaveManager : MonoBehaviour
 
         DataContainer data = new DataContainer(newMetalPlates, newEnergyCores, newGears, newCircuitBoards);
 
-        data.wBOneUpgOneUnlocked = loadedData.wBOneUpgOneUnlocked;
-        data.wBOneUpgTwoUnlocked = loadedData.wBOneUpgTwoUnlocked;
-        data.wBOneUpgThreeUnlocked = loadedData.wBOneUpgThreeUnlocked;
+        if(loadedData != null)
+        {
+            data.wBOneUpgOneUnlocked = loadedData.wBOneUpgOneUnlocked;
+            data.wBOneUpgTwoUnlocked = loadedData.wBOneUpgTwoUnlocked;
+            data.wBOneUpgThreeUnlocked = loadedData.wBOneUpgThreeUnlocked;
+        }
 
         formatter.Serialize(stream, data);
         stream.Close();
     }
 
-    public void UnlockUpgrade(int workbenchNumber, int upgradeNumber)
+    public void UnlockUpgrade(int workbenchNumber, int upgradeNumber, bool unlock = true)
     {
         DataContainer loadedData = Load();
 
@@ -85,21 +88,47 @@ public class SaveManager : MonoBehaviour
             switch(upgradeNumber)
             {
                 case 1:
-                    loadedData.wBOneUpgOneUnlocked = true;
+                    loadedData.wBOneUpgOneUnlocked = unlock;
                 break;
 
                 case 2:
-                    loadedData.wBOneUpgTwoUnlocked = true;
+                    loadedData.wBOneUpgTwoUnlocked = unlock;
                 break;
 
                 case 3:
-                    loadedData.wBOneUpgThreeUnlocked = true;
+                    loadedData.wBOneUpgThreeUnlocked = unlock;
                 break;
 
                 default:
                     Debug.LogError("Upgrade number defaulted");
                 break;
             }
+        }
+
+        formatter.Serialize(stream, loadedData);
+        stream.Close();
+    }
+
+    public void AdjustVolume(int vol, bool musicVolume)
+    {
+        DataContainer loadedData = Load();
+
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/save.datasave";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        if(loadedData == null)
+        {
+            loadedData = new DataContainer(0, 0, 0, 0);
+        }
+
+        if(musicVolume)
+        {
+            loadedData.volume = vol;
+        }
+        else
+        {
+            loadedData.fXVolume = vol;
         }
 
         formatter.Serialize(stream, loadedData);
