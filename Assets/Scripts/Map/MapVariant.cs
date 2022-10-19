@@ -16,6 +16,7 @@ public class MapVariant : MonoBehaviour
     [SerializeField] private GameObject[] _stairs;
     [SerializeField] private GameObject _returnPortal;
     [SerializeField] private GameObject[] _backgrounds = new GameObject[6];
+    [SerializeField] private SpriteRenderer[] _stateLights;
     void Start()
     {
         PopulateEnemySpawns();
@@ -58,6 +59,11 @@ public class MapVariant : MonoBehaviour
             {
                 if(s.activeSelf)
                 s.GetComponent<Stairs>().SetFunctional(true);
+            }
+
+            foreach(SpriteRenderer spr in _stateLights)
+            {
+                spr.color = Color.green;
             }
         }
 
@@ -125,6 +131,12 @@ public class MapVariant : MonoBehaviour
                 s.GetComponent<Stairs>().SetFunctional(true);
             }
             _returnPortal.GetComponent<Teleporter>().SetFunctional();
+
+            foreach(SpriteRenderer spr in _stateLights)
+            {
+                spr.color = Color.green;
+            }
+
             StartCoroutine("Open");
         }
     }
