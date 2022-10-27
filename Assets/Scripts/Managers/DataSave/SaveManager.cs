@@ -19,9 +19,26 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+    public float fXVolume {get; private set;}
+
     void Awake()
     {
         _instance = this;
+    }
+
+    void Start()
+    {
+        DataContainer loadedData = Load();
+        if(loadedData != null)
+        {
+            fXVolume = loadedData.fXVolume / 100;
+            Debug.Log("Volume: " + loadedData.fXVolume);
+        }
+        else
+        {
+            fXVolume = 1;
+            Debug.Log("NoSaveVolume: " + loadedData.fXVolume);
+        }
     }
 
     public void Save()
@@ -129,6 +146,7 @@ public class SaveManager : MonoBehaviour
         else
         {
             loadedData.fXVolume = vol;
+            fXVolume = loadedData.fXVolume;
         }
 
         formatter.Serialize(stream, loadedData);

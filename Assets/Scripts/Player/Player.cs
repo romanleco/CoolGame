@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour, IDamagable
 {
     public int Health {get; private set;}
+    private bool _canBeDamaged = true;
     [SerializeField] private bool _dashing;
     [SerializeField] private bool _canJump = true, _canDash = true;
     [SerializeField] private Vector2 _movementVector;
@@ -29,6 +30,16 @@ public class Player : MonoBehaviour, IDamagable
     private bool wBOneUpgradeOne;
     private bool wBOneUpgradeTwo;
     private bool wBOneUpgradeThree;
+
+    [Header("Visual Effects")]
+    [SerializeField] private TrailRenderer _trailRenderer;
+
+    [Header("Sound Effects")]
+    [SerializeField] private AudioClip _hitHalf;
+    [SerializeField] private AudioClip _hitFull;
+    [SerializeField] private AudioClip _propulsion;
+    [SerializeField] private AudioClip _jump;
+    [SerializeField] private AudioSource _playerAudioSource;
 
     void Start()
     {
@@ -83,16 +94,23 @@ public class Player : MonoBehaviour, IDamagable
 
     public virtual void ReceiveDamage(int damage)
     {
-        Health -= damage;
-        Debug.Log(Health);
-        if(Health <= 0)
+        if(_canBeDamaged)
         {
-            Die();
+            Health -= damage;
+            Debug.Log(Health);
+            // AudioSource.PlayClipAtPoint(_hitHalf, Vector2.zero, SaveManager.Instance.fXVolume);
+            _playerAudioSource.PlayOneShot(_hitHalf, SaveManager.Instance.fXVolume);
+            if(Health <= 0)
+            {
+                Die();
+            }
         }
     }
 
     protected virtual void Die()
     {
+        AudioSource.PlayClipAtPoint(_hitFull, this.transform.position, SaveManager.Instance.fXVolume); //! Error
+        // _playerAudioSource.PlayOneShot(_hitHalf, SaveManager.Instance.fXVolume);
         DropResources();
         SceneManager.Instance.ChangeSceneWithDelay(1f, "BaseScene");
         Destroy(this.gameObject);
@@ -141,6 +159,7 @@ public class Player : MonoBehaviour, IDamagable
                 if(Input.GetKeyDown(KeyCode.Space) && _canJump)
                 {
                     _movementVector.y = _jumpforce;
+                    _playerAudioSource.PlayOneShot(_jump, SaveManager.Instance.fXVolume);
                     StartCoroutine("JumpReset");
                 }
             }
@@ -177,7 +196,7 @@ public class Player : MonoBehaviour, IDamagable
         {
             _isGrounded = false;
         }
-        Debug.DrawRay(_rayOrigin, _rayDirection * _rayDistance, Color.magenta);
+        // Debug.DrawRay(_rayOrigin, _rayDirection * _rayDistance, Color.magenta);
     }
 
     private void FacingDirection()
@@ -197,6 +216,9 @@ public class Player : MonoBehaviour, IDamagable
     private IEnumerator DashRoutine()
     {
         _dashing = true;
+        _playerAudioSource.PlayOneShot(_propulsion, SaveManager.Instance.fXVolume);
+        _trailRenderer.emitting = true;
+        _canBeDamaged = false;
         if(_facingRight)
         {
             _movementVector.x = _dashingSpeed;
@@ -206,6 +228,8 @@ public class Player : MonoBehaviour, IDamagable
             _movementVector.x = -_dashingSpeed;
         }
         yield return _dashTimer;
+        _canBeDamaged = true;
+        _trailRenderer.emitting = false;
         _dashing = false;
         StartCoroutine("DashReset");
     }
