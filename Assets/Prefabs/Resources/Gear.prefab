@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 2
+  _resourcePickupSound: {fileID: 8300000, guid: 98bfc510585088a4d8b47f92a2c8f75d, type: 3}
 --- !u!58 &5922919870614075320
 CircleCollider2D:
   m_ObjectHideFlags: 0

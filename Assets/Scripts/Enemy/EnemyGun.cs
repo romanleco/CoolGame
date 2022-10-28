@@ -9,6 +9,7 @@ public class EnemyGun : MonoBehaviour
     [SerializeField] private Transform _barrel;
     private WaitForSeconds _cooldownTimer;
     private Vector2 _localPosition;
+    [SerializeField] private AudioClip _shootingSound;
     // [SerializeField] private float _xOffset;
     void Start()
     {
@@ -49,6 +50,7 @@ public class EnemyGun : MonoBehaviour
     public void Shoot()
     {
         Instantiate(_projectile, _barrel.position, transform.rotation);
+        MusicManager.Instance.fXPlayer.PlayOneShot(_shootingSound, SaveManager.Instance.fXVolume);
     }
 
     IEnumerator Shooting()

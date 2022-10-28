@@ -187,7 +187,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   _enemyGunScr: {fileID: 0}
-  _hitSound: {fileID: 0}
+  _hitSound: {fileID: 8300000, guid: 9b33dc59fcf24a441b9aa0d982c58843, type: 3}
   _explosionSound: {fileID: 8300000, guid: b1497d063c9c4b8428dcb8c852c2f9a7, type: 3}
 --- !u!61 &8088825156838197844
 BoxCollider2D:

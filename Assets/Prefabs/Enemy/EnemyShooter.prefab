@@ -212,6 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _projectile: {fileID: 8737079148055870602, guid: 9269688380f19034789ace7f6323009c, type: 3}
   _barrel: {fileID: 780577857663253075}
+  _shootingSound: {fileID: 8300000, guid: 8c5f0fd1c3441374e9de1444f8b7dbce, type: 3}
 --- !u!1 &3199907089584397537
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +431,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   _enemyGunScr: {fileID: 3199907089242077190}
-  _hitSound: {fileID: 0}
+  _hitSound: {fileID: 8300000, guid: 9b33dc59fcf24a441b9aa0d982c58843, type: 3}
   _explosionSound: {fileID: 8300000, guid: b1497d063c9c4b8428dcb8c852c2f9a7, type: 3}
 --- !u!61 &6640871099847538887
 BoxCollider2D:

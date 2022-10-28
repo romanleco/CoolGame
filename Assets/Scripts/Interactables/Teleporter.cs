@@ -9,6 +9,8 @@ public class Teleporter : MonoBehaviour
     private bool _active;
     [SerializeField] private bool _alwaysActive;
     [SerializeField] private bool _savesOnTeleport;
+    [SerializeField] private AudioClip _teleportSound;
+    private WaitForSeconds _teleportTime = new WaitForSeconds(1f);
 
     void Start()
     {
@@ -43,9 +45,17 @@ public class Teleporter : MonoBehaviour
                 {
                     SaveManager.Instance.Save();
                 }
-                SceneManager.Instance.ChangeScene(_sceneNameToTeleportTo);
+                StartCoroutine("Teleport");
             }
         }
+    }
+
+    IEnumerator Teleport()
+    {
+        MusicManager.Instance.fXPlayer.PlayOneShot(_teleportSound, SaveManager.Instance.fXVolume);
+        GameObject.Find("Player").SetActive(false);
+        yield return _teleportTime;
+        SceneManager.Instance.ChangeScene(_sceneNameToTeleportTo);
     }
 
     public void SetFunctional()
