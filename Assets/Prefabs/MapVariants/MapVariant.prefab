@@ -19668,6 +19668,10 @@ PrefabInstance:
       propertyPath: _up
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7166155008735998331, guid: 3ed0825d14610fc43ac14dcf41b78703, type: 3}
+      propertyPath: _blackStairSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 18e6d3ed05f806d4facee7f867f6ee6d, type: 3}
     - target: {fileID: 8284662515634797813, guid: 3ed0825d14610fc43ac14dcf41b78703, type: 3}
       propertyPath: m_Name
       value: Stairs
@@ -19677,8 +19681,16 @@ PrefabInstance:
       value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8284662515634797814, guid: 3ed0825d14610fc43ac14dcf41b78703, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8284662515634797814, guid: 3ed0825d14610fc43ac14dcf41b78703, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8284662515634797814, guid: 3ed0825d14610fc43ac14dcf41b78703, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 8284662515634797814, guid: 3ed0825d14610fc43ac14dcf41b78703, type: 3}
       propertyPath: m_LocalPosition.y
@@ -19715,6 +19727,14 @@ PrefabInstance:
     - target: {fileID: 8284662515634797814, guid: 3ed0825d14610fc43ac14dcf41b78703, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8284662515634797815, guid: 3ed0825d14610fc43ac14dcf41b78703, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 39af132ea0a4b1243bd775d52bf4355b, type: 3}
+    - target: {fileID: 8284662515634797815, guid: 3ed0825d14610fc43ac14dcf41b78703, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ed0825d14610fc43ac14dcf41b78703, type: 3}
@@ -19739,6 +19759,10 @@ PrefabInstance:
       propertyPath: _up
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7166155008735998331, guid: 3ed0825d14610fc43ac14dcf41b78703, type: 3}
+      propertyPath: _blackStairSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3c5b04898fb431b47bc4a16e66287d1b, type: 3}
     - target: {fileID: 8284662515634797813, guid: 3ed0825d14610fc43ac14dcf41b78703, type: 3}
       propertyPath: m_Name
       value: Stairs (1)
@@ -19748,8 +19772,16 @@ PrefabInstance:
       value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 8284662515634797814, guid: 3ed0825d14610fc43ac14dcf41b78703, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8284662515634797814, guid: 3ed0825d14610fc43ac14dcf41b78703, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8284662515634797814, guid: 3ed0825d14610fc43ac14dcf41b78703, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8284662515634797814, guid: 3ed0825d14610fc43ac14dcf41b78703, type: 3}
       propertyPath: m_LocalPosition.y
@@ -19787,6 +19819,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8284662515634797815, guid: 3ed0825d14610fc43ac14dcf41b78703, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b6f43bbe775fed94fa855cc60d5ecccc, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ed0825d14610fc43ac14dcf41b78703, type: 3}
 --- !u!1 &3385790411606121056 stripped

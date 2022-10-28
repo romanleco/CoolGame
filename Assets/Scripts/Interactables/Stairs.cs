@@ -10,6 +10,8 @@ public class Stairs : MonoBehaviour
     private Vector2 _teleportVector;
     private float _teleportDistance = 19.5f;
     private GameObject _player;
+    [SerializeField] private SpriteRenderer _sprRenderer;
+    [SerializeField] private Sprite _blackStairSprite;
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player")
@@ -52,6 +54,7 @@ public class Stairs : MonoBehaviour
 
     public void SetFunctional(bool functional)
     {
+        _sprRenderer.sprite = _blackStairSprite;
         _active = functional;
     }
 }
