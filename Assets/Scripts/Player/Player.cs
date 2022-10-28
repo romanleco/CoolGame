@@ -18,8 +18,10 @@ public class Player : MonoBehaviour, IDamagable
     [SerializeField] private float _speed, _jumpforce, _gravity, _maxFallingSpeed, _dashingSpeed;
     private float _horizontal, _vertical;
     private WaitForSeconds _resetJumpTimer = new WaitForSeconds(0.1f);
-    private WaitForSeconds _resetDashTimer = new WaitForSeconds(1.2f);
+    private WaitForSeconds _resetDashTimer = new WaitForSeconds(1.5f);
     private WaitForSeconds _dashTimer = new WaitForSeconds(0.15f);
+    private bool _alreadyDamaged;
+    private WaitForSeconds _damageCooldown = new WaitForSeconds(0.3f);
 
     [Header("Ground Check")]
     [SerializeField] private bool _isGrounded;
@@ -44,7 +46,7 @@ public class Player : MonoBehaviour, IDamagable
     void Start()
     {
         Health = 100;
-        _speed = 25;
+        _speed = 22;
 
         _rb = gameObject.GetComponent<Rigidbody2D>();
         if(_rb == null)
@@ -75,12 +77,12 @@ public class Player : MonoBehaviour, IDamagable
 
         if(data.wBOneUpgTwoUnlocked == true)
         {
-            _resetDashTimer = new WaitForSeconds(0.6f);
+            _resetDashTimer = new WaitForSeconds(1f);
         }
 
         if(data.wBOneUpgThreeUnlocked == true)
         {
-            _speed = 30;
+            _speed = 26;
         }
     }
 
@@ -94,7 +96,7 @@ public class Player : MonoBehaviour, IDamagable
 
     public virtual void ReceiveDamage(int damage)
     {
-        if(_canBeDamaged)
+        if(_canBeDamaged && _alreadyDamaged == false)
         {
             Health -= damage;
             Debug.Log(Health);
@@ -104,13 +106,21 @@ public class Player : MonoBehaviour, IDamagable
             {
                 Die();
             }
+
+            StartCoroutine("Damagable");
         }
+    }
+
+    IEnumerator Damagable()
+    {
+        _alreadyDamaged = true;
+        yield return _damageCooldown;
+        _alreadyDamaged = false;
     }
 
     protected virtual void Die()
     {
-        AudioSource.PlayClipAtPoint(_hitFull, this.transform.position, SaveManager.Instance.fXVolume); //! Error
-        // _playerAudioSource.PlayOneShot(_hitHalf, SaveManager.Instance.fXVolume);
+        MusicManager.Instance.fXPlayer.PlayOneShot(_hitHalf, SaveManager.Instance.fXVolume);
         DropResources();
         SceneManager.Instance.ChangeSceneWithDelay(1f, "BaseScene");
         Destroy(this.gameObject);
@@ -228,8 +238,8 @@ public class Player : MonoBehaviour, IDamagable
             _movementVector.x = -_dashingSpeed;
         }
         yield return _dashTimer;
-        _canBeDamaged = true;
         _trailRenderer.emitting = false;
+        _canBeDamaged = true;
         _dashing = false;
         StartCoroutine("DashReset");
     }

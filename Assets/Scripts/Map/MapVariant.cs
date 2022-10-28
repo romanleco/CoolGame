@@ -76,13 +76,14 @@ public class MapVariant : MonoBehaviour
 
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if(!_isCenter)
         {    
             if(other.tag == "Player" && !_cleared)
             {
                 ManageEntrances(true);
+                Destroy(gameObject.GetComponent<BoxCollider2D>()); //! This may cause errors
             }
         }
         else

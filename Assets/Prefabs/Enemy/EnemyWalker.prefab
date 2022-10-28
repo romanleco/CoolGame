@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 8088825156838197845}
   - component: {fileID: 8088825156838197844}
   - component: {fileID: 8088825156838197850}
+  - component: {fileID: 921176616638555135}
   m_Layer: 7
   m_Name: EnemyWalker
   m_TagString: Enemy
@@ -144,7 +145,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 8596640243658272642, guid: 72c37890d2f0ca547b68a0d98d58b4bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -175,6 +176,8 @@ MonoBehaviour:
   - {fileID: 8907720792417482976, guid: 691b5a4d575c7904d9a323a5ad866a15, type: 3}
   - {fileID: 5922919870614075327, guid: 58b22db7cb35b2643a32380531f56f69, type: 3}
   - {fileID: 6305267199834449708, guid: 5c4e55fc35ff6684d88f5086f32223dc, type: 3}
+  _animator: {fileID: 921176616638555135}
+  _explosionPrefab: {fileID: 6640748844658058680, guid: bc8523ad1612c614d867292cffc2d5f4, type: 3}
   _isGrounded: 0
   _rayOrigin: {x: 0, y: 0}
   _rayDirection: {x: 0, y: 0}
@@ -184,6 +187,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   _enemyGunScr: {fileID: 0}
+  _hitSound: {fileID: 0}
+  _explosionSound: {fileID: 8300000, guid: b1497d063c9c4b8428dcb8c852c2f9a7, type: 3}
 --- !u!61 &8088825156838197844
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -231,3 +236,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &921176616638555135
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8088825156838197841}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2dcd23eae9ec9d241bc63c8c6c035103, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

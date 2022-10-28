@@ -13,7 +13,9 @@ public class EnemyWalker : Enemy
     [SerializeField] private float _gravity;
     [SerializeField] private float _speed;
     [SerializeField] private GameObject[] _resources;
+    [SerializeField] private Animator _animator;
     private bool _canBeDamaged;
+    [SerializeField] private GameObject _explosionPrefab;
 
     [Header("GroundCheck")]
     [SerializeField] private bool _isGrounded;
@@ -21,6 +23,9 @@ public class EnemyWalker : Enemy
     [SerializeField] private float _rayDistance, _rayOffset;
     [SerializeField] private LayerMask _rayLayerMask;
     [SerializeField] private EnemyGun _enemyGunScr;
+    [Header("Sound Effects")]
+    [SerializeField] private AudioClip _hitSound;
+    [SerializeField] private AudioClip _explosionSound;
     protected override void Start()
     {
         base.Start();
@@ -61,10 +66,20 @@ public class EnemyWalker : Enemy
             {
                 _movementVector.y = _maxFallingSpeed;
             }
+
+            if(_animator.GetBool("rolling") == true)
+            {
+                _animator.SetBool("rolling", false);
+            }
         }
         else
         {
             _movementVector.y = 0;
+
+            if(_animator.GetBool("rolling") == false)
+            {
+                _animator.SetBool("rolling", true);
+            }
         }
 
         if(Mathf.Abs(transform.position.x - GameManager.Instance.playerPosition.x) > 0.8f && _isFollowingPlayer)
@@ -108,12 +123,15 @@ public class EnemyWalker : Enemy
         {
             StartCoroutine(ChangeColor());
             base.ReceiveDamage(damage);
+            MusicManager.Instance.fXPlayer.PlayOneShot(_hitSound, SaveManager.Instance.fXVolume);
         }
     }
 
     protected override void Die()
     {
         transform.parent.parent.GetComponent<MapVariant>().CheckRoomClear(this);
+        Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+        MusicManager.Instance.fXPlayer.PlayOneShot(_explosionSound, SaveManager.Instance.fXVolume);
         DropResources();
         base.Die();
     }
@@ -128,9 +146,9 @@ public class EnemyWalker : Enemy
 
     IEnumerator ChangeColor()
     {
-        _spriteRenderer.color = Color.white;
-        yield return _colorTimer;
         _spriteRenderer.color = Color.red;
+        yield return _colorTimer;
+        _spriteRenderer.color = Color.white;
     }
 
     IEnumerator StartFollowingPlayer()

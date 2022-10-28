@@ -26,6 +26,7 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioClip _mainMenuMusic;
     [SerializeField] private AudioClip _baseMusic;
     [SerializeField] private AudioSource _audioSource;
+    public AudioSource fXPlayer { get; private set;}
 
     void Start()
     {
@@ -34,6 +35,8 @@ public class MusicManager : MonoBehaviour
         {
             AdjustVolume(data.volume);
         }
+
+        fXPlayer = this.GetComponentInChildren<AudioSource>();
     }
 
     public void PlayLoopable()
