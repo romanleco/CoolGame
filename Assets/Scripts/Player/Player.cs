@@ -35,6 +35,9 @@ public class Player : MonoBehaviour, IDamagable
 
     [Header("Visual Effects")]
     [SerializeField] private TrailRenderer _trailRenderer;
+    private Animator _animator;
+    private WaitForSeconds _colorOnDamageTimer = new WaitForSeconds(0.2f);
+    [SerializeField] private PlayerUI _playerUI;
 
     [Header("Sound Effects")]
     [SerializeField] private AudioClip _hitHalf;
@@ -45,7 +48,7 @@ public class Player : MonoBehaviour, IDamagable
 
     void Start()
     {
-        Health = 100;
+        Health = 5;
         _speed = 22;
 
         _rb = gameObject.GetComponent<Rigidbody2D>();
@@ -60,6 +63,17 @@ public class Player : MonoBehaviour, IDamagable
             Debug.LogError("Player::Start() _spriteRenderer SpriteRenderer is null");
         }
 
+        _animator = gameObject.GetComponent<Animator>();
+        if(_animator == null)
+        {
+            Debug.LogError("Player::Start() _animator Animator is null");
+        }
+
+        if(_playerUI == null)
+        {
+            Debug.LogError("Player::Start() _playerUI Canvas is null");
+        }
+
         GameManager.Instance.SetPlayerDamagableInterface(GetComponent<IDamagable>());
 
         _canJump = true;
@@ -72,8 +86,10 @@ public class Player : MonoBehaviour, IDamagable
 
         if(data.wBOneUpgOneUnlocked == true)
         {
-            Health = 150;
+            Health = 7;
+            _playerUI.HealthExtended(true);
         }
+        _playerUI.UpdateHealth(Health);
 
         if(data.wBOneUpgTwoUnlocked == true)
         {
@@ -100,15 +116,27 @@ public class Player : MonoBehaviour, IDamagable
         {
             Health -= damage;
             Debug.Log(Health);
-            // AudioSource.PlayClipAtPoint(_hitHalf, Vector2.zero, SaveManager.Instance.fXVolume);
-            _playerAudioSource.PlayOneShot(_hitHalf, SaveManager.Instance.fXVolume);
             if(Health <= 0)
             {
+                Health = 0;
                 Die();
             }
-
-            StartCoroutine("Damagable");
+            else
+            {
+                StartCoroutine("ColorOnDamage");
+                // AudioSource.PlayClipAtPoint(_hitHalf, Vector2.zero, SaveManager.Instance.fXVolume);
+                _playerAudioSource.PlayOneShot(_hitHalf, SaveManager.Instance.fXVolume);
+                StartCoroutine("Damagable");
+            }
+            _playerUI.UpdateHealth(Health);
         }
+    }
+
+    IEnumerator ColorOnDamage()
+    {
+        _spriteRenderer.color = Color.red;
+        yield return _colorOnDamageTimer;
+        _spriteRenderer.color = Color.white;
     }
 
     IEnumerator Damagable()
@@ -120,7 +148,7 @@ public class Player : MonoBehaviour, IDamagable
 
     protected virtual void Die()
     {
-        MusicManager.Instance.fXPlayer.PlayOneShot(_hitHalf, SaveManager.Instance.fXVolume);
+        MusicManager.Instance.fXPlayer.PlayOneShot(_hitFull, SaveManager.Instance.fXVolume);
         DropResources();
         SceneManager.Instance.ChangeSceneWithDelay(1f, "BaseScene");
         Destroy(this.gameObject);
@@ -151,7 +179,15 @@ public class Player : MonoBehaviour, IDamagable
 
     private void CalculateMovement()
     {
-        _horizontal = Input.GetAxis("Horizontal");
+        _horizontal = Input.GetAxisRaw("Horizontal");
+        if(Mathf.Abs(_horizontal) > 0.1f)
+        {
+            _animator.SetBool("Walking", true);
+        }
+        else
+        {
+            _animator.SetBool("Walking", false);
+        }
         // _vertical = Input.GetAxis("Vertical");
 
         if(Input.GetKeyDown(KeyCode.LeftShift) && !_dashing && _canDash)
@@ -200,11 +236,13 @@ public class Player : MonoBehaviour, IDamagable
             if(hit.collider.tag == "Floor")
             {
                 _isGrounded = true;
+                _animator.SetBool("Jumping", false);
             }
         }
         else
         {
             _isGrounded = false;
+            _animator.SetBool("Jumping", true);
         }
         // Debug.DrawRay(_rayOrigin, _rayDirection * _rayDistance, Color.magenta);
     }

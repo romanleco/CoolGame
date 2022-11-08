@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAttackBox : MonoBehaviour
 {
-    private int _attackPoints = 25;
+    private int _attackPoints = 2;
     private bool _canAttack = true;
     private WaitForSeconds _attackCooldown = new WaitForSeconds(0.5f);
     void OnTriggerStay2D(Collider2D other)
