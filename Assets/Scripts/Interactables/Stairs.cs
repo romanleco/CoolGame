@@ -12,6 +12,17 @@ public class Stairs : MonoBehaviour
     private GameObject _player;
     [SerializeField] private SpriteRenderer _sprRenderer;
     [SerializeField] private Sprite _blackStairSprite;
+    private GameObject _interactableSign;
+
+    void Start()
+    {
+        _interactableSign = GameObject.Find("PlayerUI").transform.Find("InteractableSign").gameObject;
+        if(_interactableSign == null)
+        {
+            Debug.LogError("Stairs::Start() _interactableSign GameObject is null");
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player")
@@ -21,6 +32,11 @@ public class Stairs : MonoBehaviour
                 _player = other.gameObject;
             }
             _playerHere = true;
+
+            if(_active)
+            {
+                _interactableSign.SetActive(true);
+            }
         }
     }
 
@@ -29,6 +45,7 @@ public class Stairs : MonoBehaviour
         if(other.tag == "Player")
         {
             _playerHere = false;
+            _interactableSign.SetActive(false);
         }
     }
 

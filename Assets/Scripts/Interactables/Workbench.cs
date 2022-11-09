@@ -9,6 +9,7 @@ public class Workbench : MonoBehaviour
     [SerializeField] private AudioClip _openMenuSFX;
     [SerializeField] private AudioClip _closeMenuSFX;
     [SerializeField] private GameObject _uiWorkbenchOneMenu;
+    [SerializeField] private GameObject _interactableSign;
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.transform.tag == "Player")
@@ -27,6 +28,7 @@ public class Workbench : MonoBehaviour
                 _uiWorkbenchOneMenu.SetActive(false);
                 _menuOpen = false;
             }
+            _interactableSign.SetActive(false);
         }
     }
 
@@ -41,6 +43,7 @@ public class Workbench : MonoBehaviour
                     _uiWorkbenchOneMenu.SetActive(true);
                     _menuOpen = true;
                     AudioSource.PlayClipAtPoint(_openMenuSFX, Vector2.zero, 1f);
+                    _interactableSign.SetActive(false);
                 }
                 else if(_menuOpen == true)
                 {
@@ -48,6 +51,11 @@ public class Workbench : MonoBehaviour
                     _menuOpen = false;
                     AudioSource.PlayClipAtPoint(_closeMenuSFX, Vector2.zero, 1f);
                 }
+            }
+
+            if(_interactableSign.activeSelf == false && _menuOpen == false)
+            {
+                _interactableSign.SetActive(true);
             }
         }
     }

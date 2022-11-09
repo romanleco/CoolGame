@@ -94,6 +94,11 @@ public class Player : MonoBehaviour, IDamagable
         if(data.wBOneUpgTwoUnlocked == true)
         {
             _resetDashTimer = new WaitForSeconds(1f);
+            _playerUI.SetDashCooldown(1f);
+        }
+        else
+        {
+            _playerUI.SetDashCooldown(1.5f);
         }
 
         if(data.wBOneUpgThreeUnlocked == true)
@@ -104,10 +109,13 @@ public class Player : MonoBehaviour, IDamagable
 
     void Update()
     {
-        CalculateMovement();
-        GroundCheck();
-        GameManager.Instance.UpdatePlayerPosition(transform.position);
-        FacingDirection();
+        if(GameManager.Instance.isGamePaused == false)
+        {
+            CalculateMovement();
+            GroundCheck();
+            GameManager.Instance.UpdatePlayerPosition(transform.position);
+            FacingDirection();
+        }
     }
 
     public virtual void ReceiveDamage(int damage)
@@ -275,6 +283,7 @@ public class Player : MonoBehaviour, IDamagable
         {
             _movementVector.x = -_dashingSpeed;
         }
+        _playerUI.Dash();
         yield return _dashTimer;
         _trailRenderer.emitting = false;
         _canBeDamaged = true;

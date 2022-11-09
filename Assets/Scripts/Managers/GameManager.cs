@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int circuitBoards{get; private set;} //* id = 3
 
     public Vector2 playerPosition{ get; private set;}
+    public bool isGamePaused{get; private set;}
     public IDamagable playerDamagableInterface{get; private set;}
 
     public void UpdatePlayerPosition(Vector2 newPosition)
@@ -67,28 +68,33 @@ public class GameManager : MonoBehaviour
         playerDamagableInterface = iDamagable;
     }
 
+    public void SetGameState(bool gamePaused)
+    {
+        isGamePaused = gamePaused;
+    }
+
     public void AddResource(int resourceId)
     {
         switch(resourceId)
         {
             case 0:
                 metalPlates++;
-                Debug.Log("Metal Plates: " + metalPlates);
+                // Debug.Log("Metal Plates: " + metalPlates);
             break;
 
             case 1:
                 energyCores++;
-                Debug.Log("Energy Cores: " + energyCores);
+                // Debug.Log("Energy Cores: " + energyCores);
             break;
 
             case 2:
                 gears++;
-                Debug.Log("Gears: " + gears);
+                // Debug.Log("Gears: " + gears);
             break;
 
             case 3:
                 circuitBoards++;
-                Debug.Log("Circuit Boards: " + circuitBoards);
+                // Debug.Log("Circuit Boards: " + circuitBoards);
             break;
 
             default:

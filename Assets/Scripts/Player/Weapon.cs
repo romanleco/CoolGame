@@ -24,35 +24,38 @@ public class Weapon : MonoBehaviour
 
     void Update() 
     {
-        if(_isAutomatic)
+        if(GameManager.Instance.isGamePaused == false)
         {
-            if(Input.GetMouseButtonDown(0) || _isFiring)
+            if(_isAutomatic)
             {
-                _isFiring = true;
-                if(_canFire)
+                if(Input.GetMouseButtonDown(0) || _isFiring)
                 {
-                    StartCoroutine("FireRoutine");
+                    _isFiring = true;
+                    if(_canFire)
+                    {
+                        StartCoroutine("FireRoutine");
+                    }
+                }
+
+                if(Input.GetMouseButtonUp(0))
+                {
+                    _isFiring = false;
+                }
+            }
+            else
+            {
+                if(Input.GetMouseButtonDown(0))
+                {
+                    if(_canFire)
+                    {
+                        StartCoroutine("FireRoutine");
+                    }
                 }
             }
 
-            if(Input.GetMouseButtonUp(0))
-            {
-                _isFiring = false;
-            }
+            PointAtMouse();
+            SideFlip();
         }
-        else
-        {
-            if(Input.GetMouseButtonDown(0))
-            {
-                if(_canFire)
-                {
-                    StartCoroutine("FireRoutine");
-                }
-            }
-        }
-
-        PointAtMouse();
-        SideFlip();
     }
 
     private void PointAtMouse()

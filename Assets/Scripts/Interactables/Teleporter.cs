@@ -11,9 +11,16 @@ public class Teleporter : MonoBehaviour
     [SerializeField] private bool _savesOnTeleport;
     [SerializeField] private AudioClip _teleportSound;
     private WaitForSeconds _teleportTime = new WaitForSeconds(1f);
+    private GameObject _interactableSign;
 
     void Start()
     {
+        _interactableSign = GameObject.Find("PlayerUI").transform.Find("InteractableSign").gameObject;
+        if(_interactableSign == null)
+        {
+            Debug.LogError("Teleporter::Start() _interactableSign GameObject is null");
+        }
+
         if(_alwaysActive)
         {
             _active = true;
@@ -24,6 +31,7 @@ public class Teleporter : MonoBehaviour
         if(other.tag == "Player")
         {
             _playerHere = true;
+            _interactableSign.SetActive(true);
         }
     }
 
@@ -32,6 +40,7 @@ public class Teleporter : MonoBehaviour
         if(other.tag == "Player")
         {
             _playerHere = false;
+            _interactableSign.SetActive(false);
         }
     }
 
@@ -41,6 +50,7 @@ public class Teleporter : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.E) && _active)
             {
+                _interactableSign.SetActive(false);
                 if(_savesOnTeleport)
                 {
                     SaveManager.Instance.Save();

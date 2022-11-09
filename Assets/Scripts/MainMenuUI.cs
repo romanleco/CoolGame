@@ -9,6 +9,16 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private GameObject _creditsMenu;
     [SerializeField] private TMP_Text _musicVolumeValueText;
     [SerializeField] private TMP_Text _sFXVolumeValueText;
+
+    void Start()
+    {
+        DataContainer loadedScene = SaveManager.Instance.Load();
+        if(loadedScene != null)
+        {
+            _musicVolumeValueText.text = loadedScene.volume.ToString();
+            _sFXVolumeValueText.text = loadedScene.fXVolume.ToString();
+        }
+    }
     public void Continue()
     {
         SceneManager.Instance.ChangeScene("BaseScene");
@@ -58,6 +68,12 @@ public class MainMenuUI : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void QuitToMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.Instance.ChangeScene("MainMenuScene");
     }
 
     public void MusicVolume(bool isDown)
