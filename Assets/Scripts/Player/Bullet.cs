@@ -11,6 +11,11 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         Destroy(this.gameObject, _lifetime);
+        
+        if(this.transform.parent != null)
+        {
+            this.transform.parent = null;
+        }
     }
 
     void Update()
