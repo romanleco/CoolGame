@@ -18,6 +18,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float _yOffset = -0.108f;
     private float _startingLocalScaleX = 1;
     private float _startingLocalScaleY = 1;
+    [SerializeField] private AudioClip _shotSound;
     [Header("Recoil")]
     [SerializeField] private GameObject _weapon;
     [SerializeField] private Transform _recoilPointA;
@@ -104,6 +105,7 @@ public class Weapon : MonoBehaviour
     IEnumerator FireRoutine()
     {
         Instantiate(_bulletPrefab, _bulletSpawn.transform.position, transform.rotation);
+        MusicManager.Instance.fXPlayer.PlayOneShot(_shotSound, SaveManager.Instance.fXVolume);
         _canFire = false;
         _recoilActive = true;
         yield return _fireTimer;

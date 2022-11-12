@@ -25432,10 +25432,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 330050351440284769, guid: e490aa8b6acdb474793471b84536f083, type: 3}
-      propertyPath: _recoilDuration
-      value: 0.075
-      objectReference: {fileID: 0}
     - target: {fileID: 1115874580504299472, guid: e490aa8b6acdb474793471b84536f083, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -25484,26 +25480,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3364817049554500971, guid: e490aa8b6acdb474793471b84536f083, type: 3}
-      propertyPath: _recoilDuration
-      value: 0.0625
-      objectReference: {fileID: 0}
-    - target: {fileID: 4003420442323004471, guid: e490aa8b6acdb474793471b84536f083, type: 3}
-      propertyPath: _recoilDuration
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 4933264039521838020, guid: e490aa8b6acdb474793471b84536f083, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6930457271563928492, guid: e490aa8b6acdb474793471b84536f083, type: 3}
       propertyPath: _playerUI
       value: 
       objectReference: {fileID: 1313253938}
-    - target: {fileID: 7305365400643391775, guid: e490aa8b6acdb474793471b84536f083, type: 3}
-      propertyPath: _recoilDuration
-      value: 0.075
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e490aa8b6acdb474793471b84536f083, type: 3}
 --- !u!1 &3986957920949979843

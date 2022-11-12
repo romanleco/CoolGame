@@ -1244,6 +1244,7 @@ MonoBehaviour:
   _fireRate: 0.3
   _xOffset: 0.3
   _yOffset: -0.05
+  _shotSound: {fileID: 8300000, guid: a7300f7bbd8077e4c9325474818e4d7f, type: 3}
   _weapon: {fileID: 893925928}
   _recoilPointA: {fileID: 6682671555770230632}
   _recoilPointB: {fileID: 7748836013853590757}
@@ -1861,6 +1862,7 @@ MonoBehaviour:
   _fireRate: 0.25
   _xOffset: 0.3
   _yOffset: 0.07
+  _shotSound: {fileID: 8300000, guid: be62cc9d4b13faa41ac592dccffdde13, type: 3}
   _weapon: {fileID: 1376924611}
   _recoilPointA: {fileID: 113254074}
   _recoilPointB: {fileID: 217533778}
@@ -2002,6 +2004,7 @@ MonoBehaviour:
   _fireRate: 0.12
   _xOffset: 0.3
   _yOffset: -0.06
+  _shotSound: {fileID: 8300000, guid: 1ef6dba8f36f2e04baff74ddc627d85c, type: 3}
   _weapon: {fileID: 1435453413}
   _recoilPointA: {fileID: 4268384395964972885}
   _recoilPointB: {fileID: 826891373328971234}
@@ -2143,6 +2146,7 @@ MonoBehaviour:
   _fireRate: 0.6
   _xOffset: 0.3
   _yOffset: -0.04
+  _shotSound: {fileID: 8300000, guid: e7e6453d96ac47349b70525c382c245f, type: 3}
   _weapon: {fileID: 1298957925}
   _recoilPointA: {fileID: 369722473589088124}
   _recoilPointB: {fileID: 979891553313239395}
