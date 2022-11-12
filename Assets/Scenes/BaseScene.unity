@@ -6564,7 +6564,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &548861008
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6594,7 +6594,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 548861007}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa8a4e970fe54e04ea05a022f092533a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ea657c358f075d499b94a385d1f2d03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _buttons:
@@ -8778,7 +8778,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 548861009}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: WorkbenchButtons, Assembly-CSharp
         m_MethodName: WBOneUpgOne
         m_Mode: 1
@@ -9658,7 +9658,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 548861009}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: WorkbenchButtons, Assembly-CSharp
         m_MethodName: WBOneUpgThree
         m_Mode: 1
@@ -16721,7 +16721,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 548861009}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: WorkbenchButtons, Assembly-CSharp
         m_MethodName: WBOneUpgTwo
         m_Mode: 1

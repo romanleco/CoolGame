@@ -87,10 +87,12 @@ public class EnemyWalker : Enemy
             if(transform.position.x - GameManager.Instance.playerPosition.x < 0)
             {
                 _movementVector.x = _speed;
+                _spriteRenderer.flipX = false;
             }
             else
             {
                 _movementVector.x = -_speed;
+                _spriteRenderer.flipX = true;
             }
         }
 

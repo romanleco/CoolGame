@@ -21,7 +21,7 @@ public class Player : MonoBehaviour, IDamagable
     private WaitForSeconds _resetDashTimer = new WaitForSeconds(1.5f);
     private WaitForSeconds _dashTimer = new WaitForSeconds(0.15f);
     private bool _alreadyDamaged;
-    private WaitForSeconds _damageCooldown = new WaitForSeconds(0.4f);
+    private WaitForSeconds _damageCooldown = new WaitForSeconds(0.5f);
 
     [Header("Ground Check")]
     [SerializeField] private bool _isGrounded;

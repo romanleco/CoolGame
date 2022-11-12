@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class WorkbenchButtons : MonoBehaviour
+public class WorkbenchOneButtons : MonoBehaviour
 {
     private DataContainer _data;
     [SerializeField] private GameObject[] _buttons = new GameObject[3];
