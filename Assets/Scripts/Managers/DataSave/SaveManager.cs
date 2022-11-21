@@ -32,13 +32,10 @@ public class SaveManager : MonoBehaviour
         if(loadedData != null)
         {
             fXVolume = loadedData.fXVolume / 100;
-            Debug.Log("Volume: " + loadedData.fXVolume);
-            Debug.Log("fXVolume: " + fXVolume);
         }
         else
         {
             fXVolume = 1;
-            Debug.Log("NoSaveVolume: " + loadedData.fXVolume);
         }
     }
 
@@ -187,7 +184,7 @@ public class SaveManager : MonoBehaviour
         stream.Close();
     }
 
-    public void AdjustVolume(int vol, bool musicVolume)
+    public void AdjustVolume(float vol, bool musicVolume)
     {
         DataContainer loadedData = Load();
 
@@ -207,7 +204,9 @@ public class SaveManager : MonoBehaviour
         else
         {
             loadedData.fXVolume = vol;
-            fXVolume = loadedData.fXVolume;
+            fXVolume = loadedData.fXVolume / 100;
+            Debug.Log("Vol: " + vol);
+            Debug.Log("FX Volume: " + fXVolume);
         }
 
         formatter.Serialize(stream, loadedData);

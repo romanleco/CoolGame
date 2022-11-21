@@ -58,7 +58,7 @@ public class MusicManager : MonoBehaviour
         _audioSource.Play();
     }
 
-    public void AdjustVolume(int vol)
+    public void AdjustVolume(float vol)
     {
         float volFloat = vol;
         _audioSource.volume = volFloat / 100;
