@@ -56,7 +56,9 @@ public class GameManager : MonoBehaviour
 
     public Vector2 playerPosition{ get; private set;}
     public bool isGamePaused{get; private set;}
+    public bool isOnMenu{get; private set;}
     public IDamagable playerDamagableInterface{get; private set;}
+    public int currentWeaponIndex{get; private set;}
 
     public void UpdatePlayerPosition(Vector2 newPosition)
     {
@@ -71,6 +73,16 @@ public class GameManager : MonoBehaviour
     public void SetGameState(bool gamePaused)
     {
         isGamePaused = gamePaused;
+    }
+
+    public void SetIsOnMenu(bool onMenu)
+    {
+        isOnMenu = onMenu;
+    }
+
+    public void SetCurrentWeaponIndex(int index)
+    {
+        currentWeaponIndex = index;
     }
 
     public void AddResource(int resourceId)

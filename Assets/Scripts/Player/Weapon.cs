@@ -39,7 +39,7 @@ public class Weapon : MonoBehaviour
 
     void Update() 
     {
-        if(GameManager.Instance.isGamePaused == false)
+        if(GameManager.Instance.isGamePaused == false && GameManager.Instance.isOnMenu == false)
         {
             Firing();
             PointAtMouse();

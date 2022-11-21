@@ -1510,6 +1510,11 @@ MonoBehaviour:
   - {fileID: 703908097243194891, guid: f5d7905d4660c2c40a2484432535330a, type: 3}
   - {fileID: 5922919870614075327, guid: 58b22db7cb35b2643a32380531f56f69, type: 3}
   - {fileID: 8907720792417482976, guid: 691b5a4d575c7904d9a323a5ad866a15, type: 3}
+  _weapons:
+  - {fileID: 4933264039521838020}
+  - {fileID: 7949084020936053454}
+  - {fileID: 6722540985571930776}
+  - {fileID: 1127480895409786800}
   _speed: 30
   _jumpforce: 24
   _gravity: 60
@@ -1772,7 +1777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1537247501382882626
 Transform:
   m_ObjectHideFlags: 0

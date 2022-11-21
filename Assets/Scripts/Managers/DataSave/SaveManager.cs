@@ -33,6 +33,7 @@ public class SaveManager : MonoBehaviour
         {
             fXVolume = loadedData.fXVolume / 100;
             Debug.Log("Volume: " + loadedData.fXVolume);
+            Debug.Log("fXVolume: " + fXVolume);
         }
         else
         {
@@ -60,7 +61,15 @@ public class SaveManager : MonoBehaviour
             data.wBOneUpgOneUnlocked = loadedData.wBOneUpgOneUnlocked;
             data.wBOneUpgTwoUnlocked = loadedData.wBOneUpgTwoUnlocked;
             data.wBOneUpgThreeUnlocked = loadedData.wBOneUpgThreeUnlocked;
+
+            for(int i = 0; i < data.weaponsUnlocked.Length; i++)
+            {
+                data.weaponsUnlocked[i] = loadedData.weaponsUnlocked[i];
+            }
+
+            data.currentWeaponIndex = loadedData.currentWeaponIndex;
         }
+        data.weaponsUnlocked[0] = true;
 
         formatter.Serialize(stream, data);
         stream.Close();
@@ -81,7 +90,15 @@ public class SaveManager : MonoBehaviour
             data.wBOneUpgOneUnlocked = loadedData.wBOneUpgOneUnlocked;
             data.wBOneUpgTwoUnlocked = loadedData.wBOneUpgTwoUnlocked;
             data.wBOneUpgThreeUnlocked = loadedData.wBOneUpgThreeUnlocked;
+
+            for(int i = 0; i < data.weaponsUnlocked.Length; i++)
+            {
+                data.weaponsUnlocked[i] = loadedData.weaponsUnlocked[i];
+            }
+
+            data.currentWeaponIndex = loadedData.currentWeaponIndex;
         }
+        data.weaponsUnlocked[0] = true;
 
         formatter.Serialize(stream, data);
         stream.Close();
@@ -98,6 +115,8 @@ public class SaveManager : MonoBehaviour
         if(loadedData == null)
         {
             loadedData = new DataContainer(0, 0, 0, 0);
+            loadedData.weaponsUnlocked[0] = true;
+            loadedData.currentWeaponIndex = 0;
         }
 
         if(workbenchNumber == 1)
@@ -121,6 +140,48 @@ public class SaveManager : MonoBehaviour
                 break;
             }
         }
+
+
+
+        formatter.Serialize(stream, loadedData);
+        stream.Close();
+    }
+
+    public void UnlockWeapon(int index, bool unlock = true)
+    {
+        DataContainer loadedData = Load();
+
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/save.datasave";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        if(loadedData == null)
+        {
+            loadedData = new DataContainer(0, 0, 0, 0);
+            loadedData.weaponsUnlocked[0] = true;
+        }
+
+        loadedData.weaponsUnlocked[index] = unlock;
+
+        formatter.Serialize(stream, loadedData);
+        stream.Close();
+    }
+
+    public void SetCurrentlyEquippedWeapon(int index)
+    {
+        DataContainer loadedData = Load();
+
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/save.datasave";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        if(loadedData == null)
+        {
+            loadedData = new DataContainer(0, 0, 0, 0);
+            loadedData.weaponsUnlocked[0] = true;
+        }
+
+        loadedData.currentWeaponIndex = index;
 
         formatter.Serialize(stream, loadedData);
         stream.Close();

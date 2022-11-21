@@ -12,11 +12,11 @@ public class MainMenuUI : MonoBehaviour
 
     void Start()
     {
-        DataContainer loadedScene = SaveManager.Instance.Load();
-        if(loadedScene != null)
+        DataContainer loadedData = SaveManager.Instance.Load();
+        if(loadedData != null)
         {
-            _musicVolumeValueText.text = loadedScene.volume.ToString();
-            _sFXVolumeValueText.text = loadedScene.fXVolume.ToString();
+            _musicVolumeValueText.text = loadedData.volume.ToString();
+            _sFXVolumeValueText.text = loadedData.fXVolume.ToString();
         }
     }
     public void Continue()
@@ -30,6 +30,11 @@ public class MainMenuUI : MonoBehaviour
         SaveManager.Instance.UnlockUpgrade(1, 1, false);
         SaveManager.Instance.UnlockUpgrade(1, 2, false);
         SaveManager.Instance.UnlockUpgrade(1, 3, false);
+
+        SaveManager.Instance.UnlockWeapon(0);
+        SaveManager.Instance.UnlockWeapon(1, false);
+        SaveManager.Instance.UnlockWeapon(2, false);
+        SaveManager.Instance.UnlockWeapon(3, false);
 
         SceneManager.Instance.ChangeScene("BaseScene");
     }

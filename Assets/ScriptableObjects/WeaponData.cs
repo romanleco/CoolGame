@@ -9,6 +9,7 @@ public class WeaponData : ScriptableObject
     public Sprite sprite;
     public int damage;
     public float fireRate;
+    public float range;
     public string description;
     public int metalPlatesNeeded;
     public int energyCoresNeeded;

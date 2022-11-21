@@ -4614,7 +4614,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 395527931}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 548861009}
+        m_TargetAssemblyTypeName: WorkbenchTwoButtons, Assembly-CSharp
+        m_MethodName: ButtonLeft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &395527931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5943,6 +5955,26 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a6e3f07569447ac4ab50b36a4ccb69cb, type: 2}
   - {fileID: 11400000, guid: 61a909c45e621bf44a3bef9928f3301e, type: 2}
   - {fileID: 11400000, guid: b6ad0e4a2afac9a41916479cbfbcf4e0, type: 2}
+  _playerWeapons:
+  - {fileID: 1672151854}
+  - {fileID: 748413034}
+  - {fileID: 1102969189}
+  - {fileID: 710795770}
+  _nameText: {fileID: 134793641}
+  _weaponChangeText: {fileID: 1238303656}
+  _descriptionText: {fileID: 418434478}
+  _damageText: {fileID: 1132572052}
+  _fireRateText: {fileID: 783199355}
+  _rangeText: {fileID: 1936298321}
+  _weaponDisplayImage: {fileID: 87646071}
+  _metalPlatesText: {fileID: 927216219}
+  _energyCoresText: {fileID: 367047194}
+  _gearsText: {fileID: 573700416}
+  _circuitBoardsText: {fileID: 1793850827}
+  _purchaseButton: {fileID: 1573247944}
+  _equipButton: {fileID: 1887839367}
+  _equippedButton: {fileID: 1663859766}
+  _ownedButton: {fileID: 1590288100}
 --- !u!1 &555625057
 GameObject:
   m_ObjectHideFlags: 0
@@ -7181,6 +7213,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &710795770 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1127480895409786800, guid: e490aa8b6acdb474793471b84536f083, type: 3}
+  m_PrefabInstance: {fileID: 2441909321877046286}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &712163086 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9207080922652890747, guid: d0baffdb372ac884aba0dc6e344b856e, type: 3}
@@ -7625,6 +7662,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &748413034 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7949084020936053454, guid: e490aa8b6acdb474793471b84536f083, type: 3}
+  m_PrefabInstance: {fileID: 2441909321877046286}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &760803022
 GameObject:
   m_ObjectHideFlags: 0
@@ -9133,7 +9175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _openMenuSFX: {fileID: 8300000, guid: cc5041536730c4245862290ddc655d19, type: 3}
   _closeMenuSFX: {fileID: 8300000, guid: 08008e9a2ee446d43bccb9b0475f24a9, type: 3}
-  _uiWorkbenchOneMenu: {fileID: 1638794134}
+  _uiWorkbenchMenu: {fileID: 1638794134}
   _interactableSign: {fileID: 72301388}
 --- !u!61 &928602515
 BoxCollider2D:
@@ -10563,6 +10605,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086266960}
   m_CullTransparentMesh: 1
+--- !u!1 &1102969189 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6722540985571930776, guid: e490aa8b6acdb474793471b84536f083, type: 3}
+  m_PrefabInstance: {fileID: 2441909321877046286}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1104292678
 GameObject:
   m_ObjectHideFlags: 0
@@ -16159,9 +16206,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1638794136}
-        m_TargetAssemblyTypeName: WorkbenchButtons, Assembly-CSharp
-        m_MethodName: WBOneUpgTwo
+      - m_Target: {fileID: 548861009}
+        m_TargetAssemblyTypeName: WorkbenchTwoButtons, Assembly-CSharp
+        m_MethodName: PurchaseButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17179,6 +17226,11 @@ Transform:
   m_Father: {fileID: 1106412485}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1672151854 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4933264039521838020, guid: e490aa8b6acdb474793471b84536f083, type: 3}
+  m_PrefabInstance: {fileID: 2441909321877046286}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1673655972
 GameObject:
   m_ObjectHideFlags: 0
@@ -17723,7 +17775,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1709134336}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 548861009}
+        m_TargetAssemblyTypeName: WorkbenchTwoButtons, Assembly-CSharp
+        m_MethodName: ButtonRight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1709134336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19119,7 +19183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _openMenuSFX: {fileID: 8300000, guid: cc5041536730c4245862290ddc655d19, type: 3}
   _closeMenuSFX: {fileID: 8300000, guid: 08008e9a2ee446d43bccb9b0475f24a9, type: 3}
-  _uiWorkbenchOneMenu: {fileID: 548861007}
+  _uiWorkbenchMenu: {fileID: 548861007}
   _interactableSign: {fileID: 72301388}
 --- !u!61 &1864829969
 BoxCollider2D:
@@ -19586,9 +19650,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1638794136}
-        m_TargetAssemblyTypeName: WorkbenchButtons, Assembly-CSharp
-        m_MethodName: WBOneUpgTwo
+      - m_Target: {fileID: 548861009}
+        m_TargetAssemblyTypeName: WorkbenchTwoButtons, Assembly-CSharp
+        m_MethodName: EquipButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

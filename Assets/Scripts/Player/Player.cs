@@ -13,6 +13,7 @@ public class Player : MonoBehaviour, IDamagable
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rb;
     [SerializeField] private GameObject[] _resources = new GameObject[4];
+    [SerializeField] private GameObject[] _weapons = new GameObject[4];
 
     [Header("Movement")]
     [SerializeField] private float _speed, _jumpforce, _gravity, _maxFallingSpeed, _dashingSpeed;
@@ -104,6 +105,15 @@ public class Player : MonoBehaviour, IDamagable
         if(data.wBOneUpgThreeUnlocked == true)
         {
             _speed = 26;
+        }
+
+        if(data != null)
+        {
+            _weapons[data.currentWeaponIndex].SetActive(true);
+        }
+        else
+        {
+            _weapons[0].SetActive(true);
         }
     }
 
