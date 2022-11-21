@@ -4614,7 +4614,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 395527931}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 548861009}
+        m_TargetAssemblyTypeName: WorkbenchTwoButtons, Assembly-CSharp
+        m_MethodName: ButtonLeft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &395527931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5943,6 +5955,26 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a6e3f07569447ac4ab50b36a4ccb69cb, type: 2}
   - {fileID: 11400000, guid: 61a909c45e621bf44a3bef9928f3301e, type: 2}
   - {fileID: 11400000, guid: b6ad0e4a2afac9a41916479cbfbcf4e0, type: 2}
+  _playerWeapons:
+  - {fileID: 1672151854}
+  - {fileID: 748413034}
+  - {fileID: 1102969189}
+  - {fileID: 710795770}
+  _nameText: {fileID: 134793641}
+  _weaponChangeText: {fileID: 1238303656}
+  _descriptionText: {fileID: 418434478}
+  _damageText: {fileID: 1132572052}
+  _fireRateText: {fileID: 783199355}
+  _rangeText: {fileID: 1936298321}
+  _weaponDisplayImage: {fileID: 87646071}
+  _metalPlatesText: {fileID: 927216219}
+  _energyCoresText: {fileID: 367047194}
+  _gearsText: {fileID: 573700416}
+  _circuitBoardsText: {fileID: 1793850827}
+  _purchaseButton: {fileID: 1573247944}
+  _equipButton: {fileID: 1887839367}
+  _equippedButton: {fileID: 1663859766}
+  _ownedButton: {fileID: 1590288100}
 --- !u!1 &555625057
 GameObject:
   m_ObjectHideFlags: 0
@@ -16174,9 +16206,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1638794136}
-        m_TargetAssemblyTypeName: WorkbenchButtons, Assembly-CSharp
-        m_MethodName: WBOneUpgTwo
+      - m_Target: {fileID: 548861009}
+        m_TargetAssemblyTypeName: WorkbenchTwoButtons, Assembly-CSharp
+        m_MethodName: PurchaseButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17743,7 +17775,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1709134336}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 548861009}
+        m_TargetAssemblyTypeName: WorkbenchTwoButtons, Assembly-CSharp
+        m_MethodName: ButtonRight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1709134336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19606,9 +19650,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1638794136}
-        m_TargetAssemblyTypeName: WorkbenchButtons, Assembly-CSharp
-        m_MethodName: WBOneUpgTwo
+      - m_Target: {fileID: 548861009}
+        m_TargetAssemblyTypeName: WorkbenchTwoButtons, Assembly-CSharp
+        m_MethodName: EquipButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
