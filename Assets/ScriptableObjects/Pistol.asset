@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Pistol
   sprite: {fileID: 21300000, guid: 89098c03005257c4c813607a0a0b6896, type: 3}
-  damage: 1
+  damage: 10
   fireRate: 4
   range: 2
   description: Simple and functional pistol.
