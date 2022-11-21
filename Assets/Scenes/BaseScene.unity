@@ -8359,7 +8359,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &842463620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22509,10 +22509,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4003420442323004471, guid: e490aa8b6acdb474793471b84536f083, type: 3}
-      propertyPath: _fireRate
-      value: 0.125
-      objectReference: {fileID: 0}
     - target: {fileID: 6930457271563928492, guid: e490aa8b6acdb474793471b84536f083, type: 3}
       propertyPath: _playerUI
       value: 
@@ -22706,6 +22702,10 @@ PrefabInstance:
     - target: {fileID: 5524381282455506254, guid: 2f95d72f74adf8446a589d6be654a8d6, type: 3}
       propertyPath: m_Name
       value: PlayerUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524381282455506254, guid: 2f95d72f74adf8446a589d6be654a8d6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f95d72f74adf8446a589d6be654a8d6, type: 3}

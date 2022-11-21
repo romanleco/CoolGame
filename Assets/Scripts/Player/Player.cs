@@ -39,6 +39,7 @@ public class Player : MonoBehaviour, IDamagable
     private Animator _animator;
     private WaitForSeconds _colorOnDamageTimer = new WaitForSeconds(0.2f);
     [SerializeField] private PlayerUI _playerUI;
+    [SerializeField] private ParticleSystem _onDeathParticles;
 
     [Header("Sound Effects")]
     [SerializeField] private AudioClip _hitHalf;
@@ -166,6 +167,8 @@ public class Player : MonoBehaviour, IDamagable
 
     protected virtual void Die()
     {
+        _onDeathParticles.Play();
+        _onDeathParticles.transform.parent = null;
         MusicManager.Instance.fXPlayer.PlayOneShot(_hitFull, SaveManager.Instance.fXVolume);
         DropResources();
         SceneManager.Instance.ChangeSceneWithDelay(1f, "BaseScene");
