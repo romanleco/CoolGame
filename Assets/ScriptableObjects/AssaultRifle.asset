@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Assault Rifle
   sprite: {fileID: 21300000, guid: e03e90a21ff89dd43a68c9748a60dbbc, type: 3}
-  damage: 12
+  damage: 20
   fireRate: 8
   range: 2.5
   description: 

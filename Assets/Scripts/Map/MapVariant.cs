@@ -7,10 +7,12 @@ public class MapVariant : MonoBehaviour
     [SerializeField] private GameObject[] _entranceBlockers = new GameObject[2];
     private GameObject[] _dynamicBlockers = new GameObject[2];
     [SerializeField] private GameObject[] _enemySpawners = new GameObject[6];
+    [SerializeField] private GameObject[] _enemyFlySpawners = new GameObject[2];
     [SerializeField] private bool _isCenter;
     private bool _isEndNode;
     public int _code;
     [SerializeField] private List<EnemyWalker> _enemiesAlive = new List<EnemyWalker>();
+    [SerializeField] private List<EnemyFly> _enemiesFlyAlive = new List<EnemyFly>();
     [SerializeField] private bool _right, _up, _left, _down; //which directions have an active node
     private bool _cleared;
     [SerializeField] private GameObject[] _stairs;
@@ -100,6 +102,8 @@ public class MapVariant : MonoBehaviour
         _enemySpawners[3] = this.transform.Find("EnemySpawn (3)").gameObject;
         _enemySpawners[4] = this.transform.Find("EnemySpawn (4)").gameObject;
         _enemySpawners[5] = this.transform.Find("EnemySpawn (5)").gameObject;
+        _enemyFlySpawners[0] = this.transform.Find("EnemySpawn (6)").gameObject;
+        _enemyFlySpawners[1] = this.transform.Find("EnemySpawn (7)").gameObject;
     }
 
     private void SpawnEnemies()
@@ -117,13 +121,46 @@ public class MapVariant : MonoBehaviour
                     _enemiesAlive.Add(newEnemy.GetComponent<EnemyWalker>());
                 }
             }
+
+            foreach(GameObject o in _enemyFlySpawners)
+            {
+                int rand = Random.Range(0,2);
+                if(rand >= 1)
+                {
+                    GameObject newEnemy = Instantiate(parentNode.enemyFly, o.transform.position, Quaternion.identity);
+                    newEnemy.transform.parent = o.transform;
+                    _enemiesFlyAlive.Add(newEnemy.GetComponent<EnemyFly>());
+                }
+            }
         }
     }
 
     public void CheckRoomClear(EnemyWalker enemy)
     {
         _enemiesAlive.Remove(enemy);
-        if(_enemiesAlive.Count <= 0)
+        if(_enemiesAlive.Count <= 0 && _enemiesFlyAlive.Count <= 0)
+        {   
+            _cleared = true;
+            foreach(GameObject s in _stairs)
+            {
+                if(s.activeSelf)
+                s.GetComponent<Stairs>().SetFunctional(true);
+            }
+            _returnPortal.GetComponent<Teleporter>().SetFunctional();
+
+            foreach(SpriteRenderer spr in _stateLights)
+            {
+                spr.color = Color.green;
+            }
+
+            StartCoroutine("Open");
+        }
+    }
+
+    public void CheckRoomClear(EnemyFly enemy)
+    {
+        _enemiesFlyAlive.Remove(enemy);
+        if(_enemiesAlive.Count <= 0 && _enemiesFlyAlive.Count <= 0)
         {   
             _cleared = true;
             foreach(GameObject s in _stairs)
@@ -162,6 +199,11 @@ public class MapVariant : MonoBehaviour
         if(close)
         {
             foreach(EnemyWalker enemy in _enemiesAlive)
+            {
+                enemy.ActivateEnemy();
+            }
+
+            foreach(EnemyFly enemy in _enemiesFlyAlive)
             {
                 enemy.ActivateEnemy();
             }

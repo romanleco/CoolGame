@@ -6,6 +6,7 @@ public class MapNode : MonoBehaviour
 {
     [SerializeField] private int _index;
     [SerializeField] public GameObject[] possibleEnemies;
+    [SerializeField] public GameObject enemyFly;
     [SerializeField] private GameObject[] _mapVariations;
     public void InitializeNode(int index, int code, bool isCenterNode = false, bool emptyNode = false, bool isEndNode = false)
     {

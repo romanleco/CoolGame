@@ -47,5 +47,6 @@ MonoBehaviour:
   possibleEnemies:
   - {fileID: 8088825156838197841, guid: 54ece11a8faccde428b9fcb52c3b58c4, type: 3}
   - {fileID: 6640871099847538882, guid: 538888747e5ecd944a4d96b3abdf21cf, type: 3}
+  enemyFly: {fileID: 4038467801615213413, guid: 5232e1494c618ee49b7fa6864c8e8fec, type: 3}
   _mapVariations:
   - {fileID: 7437127316963450219, guid: c2c46454df0531440a494e00415b8945, type: 3}
