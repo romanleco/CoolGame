@@ -43,7 +43,7 @@ public class Workbench : MonoBehaviour
                 {
                     _uiWorkbenchMenu.SetActive(true);
                     _menuOpen = true;
-                    AudioSource.PlayClipAtPoint(_openMenuSFX, Vector2.zero, 1f);
+                    MusicManager.Instance.fXPlayer.PlayOneShot(_openMenuSFX, SaveManager.Instance.fXVolume);
                     _interactableSign.SetActive(false);
                     GameManager.Instance.SetIsOnMenu(true);
                 }
@@ -51,7 +51,7 @@ public class Workbench : MonoBehaviour
                 {
                     _uiWorkbenchMenu.SetActive(false);
                     _menuOpen = false;
-                    AudioSource.PlayClipAtPoint(_closeMenuSFX, Vector2.zero, 1f);
+                    MusicManager.Instance.fXPlayer.PlayOneShot(_closeMenuSFX, SaveManager.Instance.fXVolume);
                     GameManager.Instance.SetIsOnMenu(false);
                 }
             }

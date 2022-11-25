@@ -24,6 +24,7 @@ public class WorkbenchTwoButtons : MonoBehaviour
     void Start()
     {
         _data = SaveManager.Instance.Load();
+        UpdateUI();
         LoadWeaponData(0);
         this.gameObject.SetActive(false);
     }
@@ -124,9 +125,19 @@ public class WorkbenchTwoButtons : MonoBehaviour
             SaveManager.Instance.Save(_data.metalPlates - weapon.metalPlatesNeeded, _data.energyCores - weapon.energyCoresNeeded, _data.gears - weapon.gearsNeeded, _data.circuitBoards - weapon.circuitBoardsNeeded);
 
             _monitorScript.UpdateMonitor();
+            UpdateUI();
 
             _data = SaveManager.Instance.Load();
         }
+    }
+
+    private void UpdateUI()
+    {
+        DataContainer updatedData = SaveManager.Instance.Load();
+        _resourceTexts[0].text = updatedData.metalPlates.ToString();
+        _resourceTexts[1].text = updatedData.energyCores.ToString();
+        _resourceTexts[2].text = updatedData.gears.ToString();
+        _resourceTexts[3].text = updatedData.circuitBoards.ToString();
     }
 
     public void EquipButton()

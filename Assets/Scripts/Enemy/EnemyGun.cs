@@ -13,7 +13,7 @@ public class EnemyGun : MonoBehaviour
     // [SerializeField] private float _xOffset;
     void Start()
     {
-        _cooldownTimer = new WaitForSeconds(Random.Range(2f, 5f));
+        _cooldownTimer = new WaitForSeconds(Random.Range(3f, 6f));
         _localPosition.y = 0.075f;
     }
 

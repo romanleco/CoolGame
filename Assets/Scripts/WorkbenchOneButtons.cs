@@ -32,6 +32,8 @@ public class WorkbenchOneButtons : MonoBehaviour
             _buttons[2].SetActive(false);
             _unlockedTexts[2].SetActive(true);
         }
+
+        UpdateUI();
     }
 
     private void Upgrade(int metalPlatesNeeded, int energyCoresNeeded, int gearsNeeded, int circuitBoardsNeeded, int buttonIndex)
@@ -46,17 +48,22 @@ public class WorkbenchOneButtons : MonoBehaviour
             SaveManager.Instance.Save(_data.metalPlates - metalPlatesNeeded, _data.energyCores - energyCoresNeeded, _data.gears - gearsNeeded, _data.circuitBoards - circuitBoardsNeeded);
 
             _monitorScript.UpdateMonitor();
-            DataContainer updatedData = SaveManager.Instance.Load();
-            _resourceTexts[0].text = updatedData.metalPlates.ToString();
-            _resourceTexts[1].text = updatedData.energyCores.ToString();
-            _resourceTexts[2].text = updatedData.gears.ToString();
-            _resourceTexts[3].text = updatedData.circuitBoards.ToString();
+            UpdateUI();
         }
         else
         {
             Debug.Log("Insufficient resources for the upgrade");
         }
         Debug.Log("WBOneUpgOne Activated");
+    }
+
+    private void UpdateUI()
+    {
+        DataContainer updatedData = SaveManager.Instance.Load();
+        _resourceTexts[0].text = updatedData.metalPlates.ToString();
+        _resourceTexts[1].text = updatedData.energyCores.ToString();
+        _resourceTexts[2].text = updatedData.gears.ToString();
+        _resourceTexts[3].text = updatedData.circuitBoards.ToString();
     }
 
     public void WBOneUpgOne()

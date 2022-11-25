@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         _instance = this;
+
+        Cursor.SetCursor(_cursorTex, new Vector2(10, 10), CursorMode.ForceSoftware);
     }
 
     void Start()
@@ -53,6 +55,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int energyCores{get; private set;} //* id = 1
     [SerializeField] public int gears{get; private set;} //* id = 2
     [SerializeField] public int circuitBoards{get; private set;} //* id = 3
+    [SerializeField] private Texture2D _cursorTex;
 
     public Vector2 playerPosition{ get; private set;}
     public bool isGamePaused{get; private set;}

@@ -19,6 +19,17 @@ public class MainMenuUI : MonoBehaviour
             _sFXVolumeValueText.text = loadedData.fXVolume.ToString();
         }
     }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseMenu(0);
+            CloseMenu(1);
+        }
+    }
+
+
     public void Continue()
     {
         SceneManager.Instance.ChangeScene("BaseScene");
