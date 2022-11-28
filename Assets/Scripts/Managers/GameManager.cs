@@ -94,22 +94,18 @@ public class GameManager : MonoBehaviour
         {
             case 0:
                 metalPlates++;
-                // Debug.Log("Metal Plates: " + metalPlates);
             break;
 
             case 1:
                 energyCores++;
-                // Debug.Log("Energy Cores: " + energyCores);
             break;
 
             case 2:
                 gears++;
-                // Debug.Log("Gears: " + gears);
             break;
 
             case 3:
                 circuitBoards++;
-                // Debug.Log("Circuit Boards: " + circuitBoards);
             break;
 
             default:

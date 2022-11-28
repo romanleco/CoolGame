@@ -11,7 +11,12 @@ public class WorkbenchTwoButtons : MonoBehaviour
     [SerializeField] private Monitor _monitorScript;
     [SerializeField] private List<WeaponData> _weapons = new List<WeaponData>();
     [SerializeField] private GameObject[] _playerWeapons = new GameObject[4];
-    private int _currentlyDisplayedWeapon = 0;
+    [SerializeField] private int _currentlyDisplayedWeapon = 0;
+    [Header("Sound Effects")]
+    [SerializeField] private AudioClip _buttonRightSound;
+    [SerializeField] private AudioClip _buttonLeftSound;
+    [SerializeField] private AudioClip _wrong;
+    [SerializeField] private AudioClip _correct;
     [Header("UI Components")]
     [SerializeField] private TMP_Text _nameText;
     [SerializeField] private TMP_Text _weaponChangeText;
@@ -100,6 +105,7 @@ public class WorkbenchTwoButtons : MonoBehaviour
         {
             LoadWeaponData(_currentlyDisplayedWeapon + 1);
         }
+        MusicManager.Instance.fXPlayer.PlayOneShot(_buttonRightSound, SaveManager.Instance.fXVolume);
     }
 
     public void ButtonLeft()
@@ -112,6 +118,7 @@ public class WorkbenchTwoButtons : MonoBehaviour
         {
             LoadWeaponData(_data.weaponsUnlocked.Length - 1);
         }
+        MusicManager.Instance.fXPlayer.PlayOneShot(_buttonLeftSound, SaveManager.Instance.fXVolume);
     }
 
     public void PurchaseButton()
@@ -128,6 +135,11 @@ public class WorkbenchTwoButtons : MonoBehaviour
             UpdateUI();
 
             _data = SaveManager.Instance.Load();
+            MusicManager.Instance.fXPlayer.PlayOneShot(_correct, SaveManager.Instance.fXVolume);
+        }
+        else
+        {
+            MusicManager.Instance.fXPlayer.PlayOneShot(_wrong, SaveManager.Instance.fXVolume);
         }
     }
 
@@ -151,5 +163,6 @@ public class WorkbenchTwoButtons : MonoBehaviour
         SaveManager.Instance.SetCurrentlyEquippedWeapon(_currentlyDisplayedWeapon);
 
         _data = SaveManager.Instance.Load();
+        MusicManager.Instance.fXPlayer.PlayOneShot(_buttonRightSound, SaveManager.Instance.fXVolume);
     }
 }

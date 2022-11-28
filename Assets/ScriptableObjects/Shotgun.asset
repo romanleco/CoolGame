@@ -17,8 +17,8 @@ MonoBehaviour:
   damage: 10 x 5
   fireRate: 1.6
   range: 1.5
-  description: 
-  metalPlatesNeeded: 0
-  energyCoresNeeded: 0
-  gearsNeeded: 0
-  circuitBoardsNeeded: 0
+  description: Ideal for close combat.
+  metalPlatesNeeded: 15
+  energyCoresNeeded: 5
+  gearsNeeded: 10
+  circuitBoardsNeeded: 5

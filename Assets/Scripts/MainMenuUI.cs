@@ -47,6 +47,8 @@ public class MainMenuUI : MonoBehaviour
         SaveManager.Instance.UnlockWeapon(2, false);
         SaveManager.Instance.UnlockWeapon(3, false);
 
+        SaveManager.Instance.SetCurrentlyEquippedWeapon(0);
+
         SceneManager.Instance.ChangeScene("BaseScene");
     }
 

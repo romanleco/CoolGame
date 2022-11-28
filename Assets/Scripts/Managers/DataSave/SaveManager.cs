@@ -205,8 +205,6 @@ public class SaveManager : MonoBehaviour
         {
             loadedData.fXVolume = vol;
             fXVolume = loadedData.fXVolume / 100;
-            Debug.Log("Vol: " + vol);
-            Debug.Log("FX Volume: " + fXVolume);
         }
 
         formatter.Serialize(stream, loadedData);

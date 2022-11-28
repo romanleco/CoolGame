@@ -10,6 +10,9 @@ public class WorkbenchOneButtons : MonoBehaviour
     [SerializeField] private GameObject[] _unlockedTexts = new GameObject[3];
     [SerializeField] private TMP_Text[] _resourceTexts = new TMP_Text[4];
     [SerializeField] private Monitor _monitorScript;
+    [Header("Sound Effects")]
+    [SerializeField] private AudioClip _wrong;
+    [SerializeField] private AudioClip _correct;
 
     void Start()
     {
@@ -49,12 +52,13 @@ public class WorkbenchOneButtons : MonoBehaviour
 
             _monitorScript.UpdateMonitor();
             UpdateUI();
+
+            MusicManager.Instance.fXPlayer.PlayOneShot(_correct, SaveManager.Instance.fXVolume);
         }
         else
         {
-            Debug.Log("Insufficient resources for the upgrade");
+            MusicManager.Instance.fXPlayer.PlayOneShot(_wrong, SaveManager.Instance.fXVolume);
         }
-        Debug.Log("WBOneUpgOne Activated");
     }
 
     private void UpdateUI()

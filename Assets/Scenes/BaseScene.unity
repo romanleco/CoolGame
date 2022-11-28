@@ -5960,6 +5960,11 @@ MonoBehaviour:
   - {fileID: 748413034}
   - {fileID: 1102969189}
   - {fileID: 710795770}
+  _currentlyDisplayedWeapon: 0
+  _buttonRightSound: {fileID: 8300000, guid: cc5041536730c4245862290ddc655d19, type: 3}
+  _buttonLeftSound: {fileID: 8300000, guid: 08008e9a2ee446d43bccb9b0475f24a9, type: 3}
+  _wrong: {fileID: 8300000, guid: 91d3b0c27f6645f488afcca55aa59c8c, type: 3}
+  _correct: {fileID: 8300000, guid: cef06428bfe1c4d41bca7eb7c959730d, type: 3}
   _nameText: {fileID: 134793641}
   _weaponChangeText: {fileID: 1238303656}
   _descriptionText: {fileID: 418434478}
@@ -15925,7 +15930,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Halves the cooldown time for the dash
+  m_text: Dash cooldown goes from 1.5s to 1s
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -16978,6 +16983,8 @@ MonoBehaviour:
   - {fileID: 1608079215}
   - {fileID: 334560599}
   _monitorScript: {fileID: 72148671}
+  _wrong: {fileID: 8300000, guid: 91d3b0c27f6645f488afcca55aa59c8c, type: 3}
+  _correct: {fileID: 8300000, guid: cef06428bfe1c4d41bca7eb7c959730d, type: 3}
 --- !u!1 &1656113946
 GameObject:
   m_ObjectHideFlags: 0
@@ -20381,7 +20388,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Increase health from 100 to 150
+  m_text: Increase health from 5 to 7
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
