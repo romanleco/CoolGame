@@ -2,4 +2,4 @@ Hey, I made this game to explore procedurally generating a map based on a grid, 
 
 Do whatever you want with the code in the project (just the code because there are assets that are not my property).
 
-The game is available on itch.io -> https://romanleco.itch.io/coolgamedemo
+A build of the game is available on itch.io -> https://romanleco.itch.io/coolgamedemo
