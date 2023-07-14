@@ -22,7 +22,7 @@ public class Player : MonoBehaviour, IDamagable
     private WaitForSeconds _resetDashTimer = new WaitForSeconds(1.5f);
     private WaitForSeconds _dashTimer = new WaitForSeconds(0.15f);
     private bool _alreadyDamaged;
-    private WaitForSeconds _damageCooldown = new WaitForSeconds(0.5f);
+    private WaitForSeconds _damageCooldown = new WaitForSeconds(1);
 
     [Header("Ground Check")]
     [SerializeField] private bool _isGrounded;
@@ -134,7 +134,7 @@ public class Player : MonoBehaviour, IDamagable
         if(_canBeDamaged && _alreadyDamaged == false)
         {
             Health -= damage;
-            Debug.Log(Health);
+            // Debug.Log(Health);
             if(Health <= 0)
             {
                 Health = 0;
@@ -143,7 +143,6 @@ public class Player : MonoBehaviour, IDamagable
             else
             {
                 StartCoroutine("ColorOnDamage");
-                // AudioSource.PlayClipAtPoint(_hitHalf, Vector2.zero, SaveManager.Instance.fXVolume);
                 _playerAudioSource.PlayOneShot(_hitHalf, SaveManager.Instance.fXVolume);
                 StartCoroutine("Damagable");
             }

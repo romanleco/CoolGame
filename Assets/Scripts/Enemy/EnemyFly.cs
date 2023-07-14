@@ -36,7 +36,7 @@ public class EnemyFly : Enemy
             Debug.LogError("EnemyFly::Start() Rigidbody2D is null");
         }
 
-        _speed = Random.Range(2, 6);
+        _speed = Random.Range(2, 5);
 
         _startingPosition = this.transform.position;
     }
@@ -55,8 +55,8 @@ public class EnemyFly : Enemy
         {
             if(_attacking)
             {
-                _movementVector.x = (GameManager.Instance.playerPosition.x - transform.position.x) * (_speed * 2);
-                _movementVector.y = (GameManager.Instance.playerPosition.y - transform.position.y) * (_speed * 2);
+                _movementVector.x = (GameManager.Instance.playerPosition.x - transform.position.x) * (_speed * 1.4f);
+                _movementVector.y = (GameManager.Instance.playerPosition.y - transform.position.y) * (_speed * 1.4f);
             }
             else if(!_attacking)
             {

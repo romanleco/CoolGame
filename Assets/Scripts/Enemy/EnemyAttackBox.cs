@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemyAttackBox : MonoBehaviour
 {
-    [SerializeField] private int _attackPoints = 2;
+    [SerializeField] private int _attackPoints = 1;
     private bool _canAttack = true;
-    private WaitForSeconds _attackCooldown = new WaitForSeconds(0.5f);
+    private WaitForSeconds _attackCooldown = new WaitForSeconds(1f);
     private EnemyFly _enemyFlyScript;
     [SerializeField] private bool _destroysOnAttack;
 

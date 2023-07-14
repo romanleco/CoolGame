@@ -72,9 +72,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: aa83b2b4a8f08a34cb04765e6a1d10b6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.41037738, g: 0.89314544, b: 1, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -123,6 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneNameToTeleportTo: MainScene
-  _alwaysActive: 0
+  _alwaysActive: 1
   _savesOnTeleport: 0
   _teleportSound: {fileID: 8300000, guid: 374115ad4bb9bcf40903fbdc3643a512, type: 3}

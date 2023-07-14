@@ -50,7 +50,7 @@ public class MapGenerator : MonoBehaviour
         MapLayout();
         NodeEnumeration();
         NodeGeneration();
-        MapDebug();
+        // MapDebug();
     }
 
     private void MapLayout()
