@@ -1,2 +1,5 @@
 Hey, I made this game to explore procedurally generating a map based on a grid, the game is not that fun to play but you can still give it a try.
-If you prefer to play it on the browser go here ->
+
+Do whatever you want with the code in the project (just the code because there are assets that are not my property).
+
+The game is available on itch.io -> https://romanleco.itch.io/coolgamedemo
