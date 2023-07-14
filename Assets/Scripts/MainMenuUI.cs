@@ -9,6 +9,7 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private GameObject _creditsMenu;
     [SerializeField] private TMP_Text _musicVolumeValueText;
     [SerializeField] private TMP_Text _sFXVolumeValueText;
+    private string _currentSceneName;
 
     void Start()
     {
@@ -18,11 +19,13 @@ public class MainMenuUI : MonoBehaviour
             _musicVolumeValueText.text = loadedData.volume.ToString();
             _sFXVolumeValueText.text = loadedData.fXVolume.ToString();
         }
+
+        _currentSceneName = SceneManager.Instance.GetSceneName();
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) && _currentSceneName == "MainMenuScene")
         {
             CloseMenu(0);
             CloseMenu(1);

@@ -18,7 +18,7 @@ MonoBehaviour:
   fireRate: 8
   range: 2.5
   description: Great fire rate with good damage.
-  metalPlatesNeeded: 35
-  energyCoresNeeded: 15
-  gearsNeeded: 20
-  circuitBoardsNeeded: 15
+  metalPlatesNeeded: 15
+  energyCoresNeeded: 20
+  gearsNeeded: 15
+  circuitBoardsNeeded: 20

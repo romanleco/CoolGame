@@ -10,6 +10,7 @@ public class Workbench : MonoBehaviour
     [SerializeField] private AudioClip _closeMenuSFX;
     [SerializeField] private GameObject _uiWorkbenchMenu;
     [SerializeField] private GameObject _interactableSign;
+    [SerializeField] private GameObject _pauseMenu;
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.transform.tag == "Player")
@@ -39,27 +40,50 @@ public class Workbench : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
-                if(_menuOpen == false)
+                if(_pauseMenu.activeSelf == false)
                 {
-                    _uiWorkbenchMenu.SetActive(true);
-                    _menuOpen = true;
-                    MusicManager.Instance.fXPlayer.PlayOneShot(_openMenuSFX, SaveManager.Instance.fXVolume);
-                    _interactableSign.SetActive(false);
-                    GameManager.Instance.SetIsOnMenu(true);
-                }
-                else if(_menuOpen == true)
-                {
-                    _uiWorkbenchMenu.SetActive(false);
-                    _menuOpen = false;
-                    MusicManager.Instance.fXPlayer.PlayOneShot(_closeMenuSFX, SaveManager.Instance.fXVolume);
-                    GameManager.Instance.SetIsOnMenu(false);
+                    if(_menuOpen == false)
+                    {
+                        _uiWorkbenchMenu.SetActive(true);
+                        _menuOpen = true;
+                        MusicManager.Instance.fXPlayer.PlayOneShot(_openMenuSFX, SaveManager.Instance.fXVolume);
+                        _interactableSign.SetActive(false);
+                        GameManager.Instance.SetIsOnMenu(true);
+                    }
+                    else if(_menuOpen == true)
+                    {
+                        CloseMenu();
+                    }
                 }
             }
 
-            if(_interactableSign.activeSelf == false && _menuOpen == false)
+            if(Input.GetKeyDown(KeyCode.Escape))
             {
-                _interactableSign.SetActive(true);
+                if(_menuOpen == true)
+                {
+                    CloseMenu();
+                }
+            }
+
+            if(_pauseMenu.activeSelf == false)
+            {
+                if(_interactableSign.activeSelf == false && _menuOpen == false)
+                {
+                    _interactableSign.SetActive(true);
+                }
+            }
+            else
+            {
+                _interactableSign.SetActive(false);
             }
         }
+    }
+
+    private void CloseMenu()
+    {
+        _uiWorkbenchMenu.SetActive(false);
+        _menuOpen = false;
+        MusicManager.Instance.fXPlayer.PlayOneShot(_closeMenuSFX, SaveManager.Instance.fXVolume);
+        GameManager.Instance.SetIsOnMenu(false);
     }
 }

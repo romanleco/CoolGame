@@ -18,7 +18,7 @@ MonoBehaviour:
   fireRate: 3.3
   range: 2.6
   description: Obliterate your enemies.
-  metalPlatesNeeded: 40
-  energyCoresNeeded: 80
-  gearsNeeded: 30
-  circuitBoardsNeeded: 60
+  metalPlatesNeeded: 20
+  energyCoresNeeded: 40
+  gearsNeeded: 15
+  circuitBoardsNeeded: 30

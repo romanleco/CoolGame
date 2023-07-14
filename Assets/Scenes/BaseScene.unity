@@ -2289,6 +2289,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &238848887 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1894467206, guid: 2f95d72f74adf8446a589d6be654a8d6, type: 3}
+  m_PrefabInstance: {fileID: 5524381281352509311}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &246663668
 GameObject:
   m_ObjectHideFlags: 0
@@ -9182,6 +9187,7 @@ MonoBehaviour:
   _closeMenuSFX: {fileID: 8300000, guid: 08008e9a2ee446d43bccb9b0475f24a9, type: 3}
   _uiWorkbenchMenu: {fileID: 1638794134}
   _interactableSign: {fileID: 72301388}
+  _pauseMenu: {fileID: 238848887}
 --- !u!61 &928602515
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19216,6 +19222,7 @@ MonoBehaviour:
   _closeMenuSFX: {fileID: 8300000, guid: 08008e9a2ee446d43bccb9b0475f24a9, type: 3}
   _uiWorkbenchMenu: {fileID: 548861007}
   _interactableSign: {fileID: 72301388}
+  _pauseMenu: {fileID: 238848887}
 --- !u!61 &1864829969
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22656,6 +22663,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -6105754179883937257, guid: 64e538b0f8ae79e47aeb2c00c7888955, type: 3}
     - target: {fileID: 72301388, guid: 2f95d72f74adf8446a589d6be654a8d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1894467206, guid: 2f95d72f74adf8446a589d6be654a8d6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
